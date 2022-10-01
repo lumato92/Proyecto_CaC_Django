@@ -1,0 +1,115 @@
+{% extends 'sidebar2.html' %}
+
+{% block content %}
+
+<div class="content-wrapper">
+
+
+
+
+    <div class="card card-primary">
+        <div class="card-header">
+        <h3 class="card-title">Agregar Nuevo Empleado</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form>
+        <div class="card-body">
+
+        <h2 class="h2">Informacion Personal</h2>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="">Nombre</label>
+                    {{form.first_name}}
+                </div>
+                
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="">Apellido</label>
+                    {{form.last_name}}
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    <label for="" >Sexo</label>
+                    {{form.genre}}
+                </div>
+             </div>
+            
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    <label for="" >Fecha de Nacimiento</label>
+                    {{form.dob}}
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+
+
+            <div class="form-group">
+                <label for="" >DNI</label>
+                {{form.id_number}}
+            </div>
+
+            <div class="form-group">
+                <label for="" >CUIL</label>
+                {{form.tax_id_number}}
+            </div>
+
+            <div class="form-group">
+                <label for="" >Direccion</label>
+                {{form.address}}
+            </div>
+
+
+
+
+
+
+            <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="form-group">
+            <label for="exampleInputFile">File input</label>
+            <div class="input-group">
+                <div class="custom-file">
+                <input type="file" class="custom-file-input" id="exampleInputFile">
+                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                </div>
+                <div class="input-group-append">
+                <span class="input-group-text">Upload</span>
+                </div>
+            </div>
+            </div>
+            <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+        </div>
+        <!-- /.card-body -->
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        </form>
+    </div>
+
+</div>
+{% endblock content %}
