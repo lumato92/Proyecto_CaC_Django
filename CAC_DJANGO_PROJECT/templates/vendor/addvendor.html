@@ -1,0 +1,140 @@
+{% extends 'sidebar2.html' %}
+
+{% block content %}
+
+<div class="content-wrapper" >
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-12">
+            
+                <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Nuevo Proveedor</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form method="POST">
+
+                    {% csrf_token %}
+                    <div class="card-body">
+
+                        <h2 class="h2">Datos Proveedor</h2>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Razon Social</label>
+                                    {{form.name}}
+                                </div>
+                                
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">CUIT</label>
+                                    {{form.tax_id_number}}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label for="" >Condicion IVA</label>
+                                    {{form.vat_condition}}
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label for="" >Categoria</label>
+                                    {{form.category}}
+                                </div>
+                            </div>
+                        </div>
+
+
+                    
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" >Telefono</label>
+                                    {{form.phone}}
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="" >Direccion</label>
+                                    {{form.address}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+
+                            <div class="col-md-6">
+                                
+                                    <div class="form-group">
+                                        <label for="" >Correo Electronico</label>
+                                        {{form.email}}
+                                    </div>
+                                
+
+                            </div>
+
+                            <div class="col-md-6">
+                                
+                                <div class="form-group">
+                                    <label for="" >Persona de Contacto</label>
+                                    {{form.contact_name}}
+                                </div>
+                            
+
+                            </div>
+                        </div>
+
+                            <div class="row">
+                                
+                                <div class="form-group">
+                                    <label for="">Descripcion</label>
+                                    {{form.description}}
+                                </div>
+                            </div>
+
+                    
+
+
+                    
+                    <!-- /.card-body -->
+
+                    <div class="card-footer">
+
+                        <button type="submit" class="btn btn-primary">
+                            {% if edit %}
+                                Editar
+                        
+                            {% else %}
+                                Agregar
+                            {% endif %}                                    
+                            </button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>      
+</div>
+
+{% endblock content %}

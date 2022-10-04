@@ -21,18 +21,15 @@ class EmployeeForm(forms.ModelForm):
         self.fields['last_name'].widget = forms.TextInput(attrs={'class':'form-control'})
         # self.fields['genre'].widget = forms.ChoiceField(attrs={'class':'form-control'})
         self.fields['dob'].widget = forms.DateInput(attrs={'type':'date','class':'form-control'})
+        self.fields['email'].widget = forms.TextInput(attrs={'type':'email','class':'form-control'})
         self.fields['start_date'].widget = forms.DateInput(attrs={'type':'date'})
         self.fields['id_number'].widget = forms.NumberInput(attrs={'class':'form-control'})
         self.fields['tax_id_number'].widget = forms.NumberInput(attrs={'class':'form-control'})
         self.fields['address'].widget = forms.TextInput(attrs={'class':'form-control'})
         self.fields['phone'].widget = forms.NumberInput(attrs={'class':'form-control'})
-    
-    
-    
-    
-    
-    
-    
+
+        self.fields['start_date'].widget = forms.DateInput(attrs={'type':'date','class':'form-control'})
+        self.fields['is_active'].widget = forms.CheckboxInput()
     
     
     
