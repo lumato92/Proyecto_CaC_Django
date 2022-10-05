@@ -8,6 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdminLTE 3 | Fixed Sidebar</title>
 
+  {% block title %}{% endblock title %}
+
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -17,6 +19,11 @@
   <link rel="stylesheet" href={% static "lib/adminlte3.2.0/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" %}>
   <!-- Theme style -->
   <link rel="stylesheet" href={% static 'lib/adminlte3.2.0/css/adminlte.min.css' %}>
+
+  {% block styles %}
+  
+  {% endblock styles %}
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <!-- Site wrapper -->
@@ -59,6 +66,10 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+
+          <li class="nav-header">
+            <a href={% url 'home' %} class"nav-link"><i class="nav-icon fa-solid fa-home"></i> Home</a>
+          </li>
           <li class="nav-header">EMPLOYEES</li>
           <li class="nav-item">
             <a href={% url 'addEmployee' %} class="nav-link">
