@@ -1,0 +1,24 @@
+
+{% extends 'sidebar2.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block style %}
+{% load static %}
+<link rel="stylesheet" href={% static 'css/dashboard/dashboard.css' %}>
+
+{% endblock style %}
+
+
+{% block content %}
+
+<div class="content-wrapper">
+    <h1 class="h1 center-text">
+        DASHBOARD HOME
+    </h1>
+
+
+    {% include 'dashboard/homedash.html' %}
+</div>
+
+{% endblock content %}

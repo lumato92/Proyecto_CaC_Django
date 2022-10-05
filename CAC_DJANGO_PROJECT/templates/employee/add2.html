@@ -164,16 +164,34 @@
                                 </div>
 
                             </div>
-                            <div class="col-md-4">
+                            {% comment %} <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="" >En Funcion</label>
-                                    {% comment %} {{form.is_active}} {% endcomment %}
+                                    {{form.is_active}}
 
 
 
                                 </div>
 
+                            </div> {% endcomment %}
+
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                    <label for="">Estado de Empleado</label>
+
+                                    <div class="form-check">
+                                        
+                                        {{form.is_active}}
+                                        <label for="" class="form-check-label  justify-content-center">Activo</label>
+
+                                    </div>
+ 
+                                </div>
+                                
                             </div>
+
+
                         </div>
 
 

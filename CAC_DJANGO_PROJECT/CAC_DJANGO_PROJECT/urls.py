@@ -8,4 +8,5 @@ urlpatterns = [
     path('index/',views.index,name='index'),
     path('empleados/',include("employee.urls")),
     path('proveedores/',include('vendor.urls')),
+    path('home/',views.home,name='home')
 ]

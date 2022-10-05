@@ -30,7 +30,7 @@ class EmployeeForm(forms.ModelForm):
         self.fields['phone'].widget = forms.NumberInput(attrs={'class':'form-control'})
         self.fields['position'] = forms.ModelMultipleChoiceField(queryset=Puesto.objects.all(),widget=forms.Select(attrs={'class':'form-control'}))
         self.fields['start_date'].widget = forms.DateInput(attrs={'type':'date','class':'form-control'})
-        self.fields['is_active'].widget = forms.CheckboxInput()
+        self.fields['is_active'].widget = forms.CheckboxInput(attrs={'class':'form-check-input  justify-content-center'})
         self.fields['management'] = forms.ModelMultipleChoiceField(queryset=Department.objects.all(),widget=forms.Select(attrs={'class':'form-control'}))
         self.fields['manager'] = forms.ModelMultipleChoiceField(queryset=Employee.objects.all(),widget=forms.Select(attrs={'class':'form-control'}))
         self.fields['salary'].widget = forms.NumberInput(attrs={'class':'form-control'})
