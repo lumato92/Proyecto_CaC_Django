@@ -17,9 +17,10 @@ class EmployeeForm(forms.ModelForm):
     
     def __init__(self,*args, **kwargs):
         super(EmployeeForm,self).__init__(*args,**kwargs)
+
         self.fields['first_name'].widget = forms.TextInput(attrs={'class':'form-control'})
         self.fields['last_name'].widget = forms.TextInput(attrs={'class':'form-control'})
-        # self.fields['genre'].widget = forms.ChoiceField(attrs={'class':'form-control'})
+        self.fields['genre'].widget = forms.Select(attrs={'class':'form-control'},choices=GENRE)
         self.fields['dob'].widget = forms.DateInput(attrs={'type':'date','class':'form-control'})
         self.fields['email'].widget = forms.TextInput(attrs={'type':'email','class':'form-control'})
         self.fields['start_date'].widget = forms.DateInput(attrs={'type':'date'})
@@ -27,10 +28,13 @@ class EmployeeForm(forms.ModelForm):
         self.fields['tax_id_number'].widget = forms.NumberInput(attrs={'class':'form-control'})
         self.fields['address'].widget = forms.TextInput(attrs={'class':'form-control'})
         self.fields['phone'].widget = forms.NumberInput(attrs={'class':'form-control'})
-
+        self.fields['position'] = forms.ModelMultipleChoiceField(queryset=Puesto.objects.all(),widget=forms.Select(attrs={'class':'form-control'}))
         self.fields['start_date'].widget = forms.DateInput(attrs={'type':'date','class':'form-control'})
         self.fields['is_active'].widget = forms.CheckboxInput()
-    
+        self.fields['management'] = forms.ModelMultipleChoiceField(queryset=Department.objects.all(),widget=forms.Select(attrs={'class':'form-control'}))
+        self.fields['manager'] = forms.ModelMultipleChoiceField(queryset=Employee.objects.all(),widget=forms.Select(attrs={'class':'form-control'}))
+        self.fields['salary'].widget = forms.NumberInput(attrs={'class':'form-control'})
+
     
     
     class Meta:

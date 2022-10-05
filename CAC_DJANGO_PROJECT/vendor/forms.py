@@ -1,6 +1,6 @@
 
 from django import forms 
-from .models import Supplier
+from .models import Category, Supplier, VAT_CONDITION
 
 
 
@@ -18,7 +18,9 @@ class SupplierForm(forms.ModelForm):
         self.fields['phone'].widget = forms.NumberInput(attrs={'class':'form-control'})
         self.fields['email'].widget = forms.TextInput(attrs={'class':'form-control'})
         self.fields['contact_name'].widget = forms.TextInput(attrs={'class':'form-control'})
-        
+        self.fields['vat_condition'].widget = forms.Select(attrs={'class':'form-control'},choices=VAT_CONDITION)
+        self.fields['category'] = forms.ModelMultipleChoiceField(queryset=Category.objects.all(),widget=forms.Select(attrs={'class':'form-control'}))
+
         
         
     class Meta:
