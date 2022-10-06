@@ -1,4 +1,3 @@
-corona-free-dark-bootstrap-admin-template-1.0.0
-corona-free-dark-bootstrap-admin-template-1.0.0.zip
-AdminLTE-3.2.0
-AdminLTE-3.2.0.zip
+*.sqlite3
+*.pyc
+env/
