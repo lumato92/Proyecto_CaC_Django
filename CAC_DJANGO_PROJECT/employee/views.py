@@ -33,7 +33,7 @@ def addEmployee(request):
         context = {'form':form,
                    'edit': edit}
     
-    return render(request,'employee/add2.html',context)
+    return render(request,'employee/addemployee.html',context)
 
 
 def allEmployees(request):
@@ -80,4 +80,10 @@ def editEmployee(request,id):
         context = {'form' : employeeform,
                    'edit' : edit}
     
-    return render(request,'employee/add2.html',context)
+    return render(request,'employee/addemployee.html',context)
+
+
+def addManagement(request):
+    
+    # return HttpResponse ("ok")
+    return render (request, "base.html")

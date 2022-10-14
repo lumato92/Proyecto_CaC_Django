@@ -7,5 +7,6 @@ urlpatterns = [
     path("add/", views.addEmployee, name="addEmployee"),
     path('all/', views.allEmployees, name='allEmployee'),
     path('info/<int:id>', views.infoEmployee, name='infoEmployee'),
-    path('edit/<int:id>', views.editEmployee, name='editEmployee')
+    path('edit/<int:id>', views.editEmployee, name='editEmployee'),
+    path('management/',views.addManagement, name='addManagement')
 ]

@@ -1,36 +1,7 @@
 
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Fixed Sidebar</title>
-
-  {% block title %}{% endblock title %}
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href={% static 'lib/adminlte3.2.0/plugins/fontawesome-free/css/all.min.css' %}>
-  <script src="https://kit.fontawesome.com/e63f160475.js" crossorigin="anonymous"></script>
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href={% static "lib/adminlte3.2.0/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" %}>
-  <!-- Theme style -->
-  <link rel="stylesheet" href={% static 'lib/adminlte3.2.0/css/adminlte.min.css' %}>
-
-  {% block styles %}
-  
-  {% endblock styles %}
-
-</head>
-<body class="hold-transition sidebar-mini layout-fixed">
-<!-- Site wrapper -->
-<div class="wrapper">
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="../../index3.html" class="brand-link">
       <img src={% static 'lib/adminlte3.2.0/img/AdminLTELogo.png' %} alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -85,6 +56,24 @@
               <i class="nav-icon fa-solid fa-people"></i>
               <p>
                 Todos 
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href={% url 'addManagement' %} class="nav-link">
+              <i class="nav-icon fa-solid fa-people"></i>
+              <p>
+                Puestos 
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href={% url 'allEmployee' %} class="nav-link">
+              <i class="nav-icon fa-solid fa-people"></i>
+              <p>
+                Gerencias 
               </p>
             </a>
           </li>
@@ -148,38 +137,3 @@
     </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
-
-  {% comment %} CONTENIDO {% endcomment %}
-
-
-  {% block content %}
-  
-  {% endblock content %}
-
-
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-
-<!-- jQuery -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<!-- Bootstrap 4 -->
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-
-<!-- overlayScrollbars -->
-{% comment %} <script type="text/javascript" src="{% static 'lib/adminlte3.2.0/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' %}"></script> {% endcomment %}
-<!-- AdminLTE App -->
-{% comment %} <script type="text/javascript" src="{% static 'lib/adminlte3.2.0/js/adminlte.min.js' %}"></script> {% endcomment %}
-<!-- AdminLTE for demo purposes -->
-{% comment %} <script type="text/javascript" src="{% static 'lib/adminlte3.2.0/js/demo.js' %}"></script> {% endcomment %}
-</body>
-</html>
