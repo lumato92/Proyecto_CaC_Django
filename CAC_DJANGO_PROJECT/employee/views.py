@@ -1,8 +1,12 @@
+
+from turtle import position
 from django.shortcuts import render
 from django.http import HttpResponse
 
 from employee.models import Employee
 from .forms import EmployeeForm
+
+from login.user import newUser
 # Create your views here.
 
 def index(request):
@@ -15,10 +19,23 @@ def addEmployee(request):
     
     if (request.method == 'POST'):
         form = EmployeeForm(request.POST)
+   
+
         if form.is_valid():
             
             form.save()
-        
+            
+            name = form.cleaned_data.get('first_name')
+            lastName = form.cleaned_data.get('last_name')
+            email = form.cleaned_data.get('email')
+            position = form.cleaned_data.get('position')
+            print(position)
+            
+            if newUser(name,lastName,email,position):
+                print("USER CREADO")
+            else:
+                print("error")
+                        
             return HttpResponse("Empleado agregado")
         else:
             print(form.errors.as_data())

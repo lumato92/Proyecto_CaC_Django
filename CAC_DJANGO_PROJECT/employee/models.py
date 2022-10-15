@@ -1,6 +1,4 @@
-from email.policy import default
-from unicodedata import name
-from unittest.util import _MAX_LENGTH
+from django.contrib.auth.models import User
 from django.db import models
 from .misc import COUNTRY_LIST
 
@@ -68,30 +66,9 @@ class Employee(models.Model):
     manager = models.ForeignKey('self',on_delete=models.DO_NOTHING)
     salary = models.FloatField(null = True)
     is_active = models.BooleanField(default=True)
+    username = models.ForeignKey(User, on_delete=models.CASCADE,blank = True , null = True)
     
-    # class Meta:
-        
-    #     name = Employee
-        
-    #     fields = ('first_name','last_name','dob','gender','cuil','dni','email',
-    #               'address','phone','position','management','manager','is_active')
-        
-    #     labels = {
-    #         'first_name':'Nombre',
-    #         'last_name' : 'Apellido',
-    #         'dob' : 'Fecha de Nacimiento',
-    #         'gender': 'Sexo',
-    #         'cuil' : 'Cuil',
-    #         'dni' : 'DNI',
-    #         'email' : 'Correo Electronico',
-    #         'address' : 'Direccion',
-    #         'phone' : 'Telefono',
-    #         'position' : 'Cargo',
-    #         'management' : 'Gerencia',
-    #         'manager' : 'Jefe',
-    #         'is_active' : 'Activo'
-    #     }
-
+    
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
     
