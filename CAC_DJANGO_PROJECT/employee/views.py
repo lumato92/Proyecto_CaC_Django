@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib import messages
 
 from employee.models import Employee
 from .forms import EmployeeForm
@@ -45,10 +46,13 @@ def editEmployee(request,id):
         form = EmployeeForm(request.POST,instance=employee)
         if form.is_valid():
             form.save()
-            return HttpResponse("Empleado Editado")
+            messages.success(request, 'Se actualizo el empleado!')
+            return redirect('allEmployee')  
         else:
             print(form.errors.as_data())
-            return HttpResponse("HUBO UN ERROR")
+            #return HttpResponse("HUBO UN ERROR")
+            messages.warning(request, 'HUBO UN ERROR')
+            return redirect('allEmployee')  
     else:
         employeeform = EmployeeForm(instance = employee)
         context = {'form' : employeeform,
@@ -58,6 +62,7 @@ def editEmployee(request,id):
 def deleteEmployee(request, id):
     employee = Employee.objects.get(id=id)
     employee.delete()
+    messages.error(request, 'Document deleted.')
     return redirect('allEmployee')  
 
 def addManagement(request):    
