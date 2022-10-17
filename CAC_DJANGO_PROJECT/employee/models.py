@@ -8,7 +8,7 @@ from .misc import COUNTRY_LIST
 
 #Gerencias
 class Department(models.Model):
-    name = models.CharField(primary_key=True, max_length=30)
+    name = models.CharField(max_length=30)
     description = models.TextField()
     
     def __str__(self):
@@ -25,7 +25,7 @@ class Department(models.Model):
 class Puesto(models.Model):
     
     name = models.CharField(max_length=30)
-    department = models.ForeignKey(Department, on_delete =models.CASCADE)
+    department = models.ForeignKey(Department, on_delete =models.CASCADE, blank = True , null = True)
     description = models.TextField()
     base_salary = models.FloatField()
     
@@ -63,9 +63,9 @@ class Employee(models.Model):
     email = models.EmailField()
     phone = models.IntegerField()
     start_date = models.DateField()
-    position = models.ForeignKey(Puesto, on_delete = models.CASCADE)
-    management = models.ForeignKey(Department, on_delete = models.CASCADE)
-    manager = models.ForeignKey('self',on_delete=models.DO_NOTHING)
+    position = models.ForeignKey(Puesto, on_delete = models.CASCADE, blank = True ,null = True)
+    management = models.ForeignKey(Department, on_delete = models.CASCADE, blank = True, null = True)
+    manager = models.ForeignKey('self',on_delete=models.DO_NOTHING ,blank = True ,null = True)
     salary = models.FloatField(null = True)
     is_active = models.BooleanField(default=True)
     
