@@ -10,4 +10,10 @@ urlpatterns = [
     path('edit/<int:id>', views.editEmployee, name='editEmployee'),
     path('management/',views.addManagement, name='addManagement'),
     path('delete/<int:id>', views.deleteEmployee, name='deleteEmployee'),
+    #-----URL Department--------#
+    path("departamento/add/", views.addDepartment, name="addDepartment"),
+    path('departamentos/all/', views.allDepartments, name='allDepartment'),
+    path('departamento/info/<int:id>', views.infoDepartment, name='infoDepartment'),
+    path('departamento/edit/<int:id>', views.editDepartment, name='editDepartment'),
+    path('departamento/delete/<int:id>', views.deleteDepartment, name='deleteDepartment'),
 ]
