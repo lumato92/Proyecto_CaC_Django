@@ -15,13 +15,19 @@ def addEmployee(request):
         form = EmployeeForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse("Empleado agregado")
+            #return HttpResponse("Empleado agregado")
+            messages.success(request, 'Empleado agregado exitosamente!')
+            return redirect('allEmployee')  
         else:
             print(form.errors.as_data())
+            form_errors = form.errors
+            messages.error(request, form_errors )
             # form = EmployeeForm()
             # context = {'form':form}
             # return render(request,'employee/add2.html',context)
-            return HttpResponse("HUBO UN ERROR")
+            #return HttpResponse("HUBO UN ERROR")
+            #return redirect(request.META['HTTP_REFERER']) 
+            return render(request, 'employee/addemployee.html', { 'form': form })
     else:       
         form = EmployeeForm()
         context = {'form':form,
