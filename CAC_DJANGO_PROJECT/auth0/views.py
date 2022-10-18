@@ -23,3 +23,9 @@ def loginUser(request):
             # Return an 'invalid login' error message.
             
     return render (request, 'login/login.html')
+
+
+def logoutUser(request):
+    logout(request)
+    
+    return redirect('loginUser')
