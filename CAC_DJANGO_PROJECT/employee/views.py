@@ -74,11 +74,22 @@ def deleteEmployee(request, id):
     return redirect('allEmployee')  
 #--------End Employee------------------------------#    
 
+#--------Show Gerencias------------------------------#    
 def addManagement(request):    
     # return HttpResponse ("ok")
-    
     return render (request, "base.html")
+def showManagements(request):    
+    # return HttpResponse ("ok")
+    managements = Department.objects.all()
+    #return HttpResponse(f"""<h1> Listado de proyectos </h1>""")
+    return render(request,'employee/showmanagements.html',{ 'managements': managements })
 
+#--------Show Puestos------------------------------#    
+def showPuestos(request):    
+    puestos = Puesto.objects.all()
+    return render(request,'employee/showpuestos.html',{ 'puestos': puestos })
+
+"""
 #--------Department--------------------------#    
 #--------Create------------------------------#    
 def addDepartment(request):
@@ -137,3 +148,4 @@ def deleteDepartment(request, id):
     messages.error(request, 'Department deleted.')
     return redirect('allDepartment')  
 #--------End Employee------------------------------#    
+"""
