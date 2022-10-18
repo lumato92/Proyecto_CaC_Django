@@ -8,48 +8,25 @@ from .misc import COUNTRY_LIST
 class Department(models.Model):
     name = models.CharField(max_length=30)
     description = models.TextField()
-    
     def __str__(self):
         return self.name
-    
-    
-    
-
-
-
-
 #PUESTOS
-
-class Puesto(models.Model):
-    
+class Puesto(models.Model):    
     name = models.CharField(max_length=30)
     department = models.ForeignKey(Department, on_delete =models.CASCADE, blank = True , null = True)
     description = models.TextField()
     base_salary = models.FloatField()
     
-    
     def __str__(self):
         return self.name
     
-    
-    
-    
-    
-
-
-
-
 # Empleado
-
 class Employee(models.Model):
     GENRE = (
         ('F','FEMENINO'),
         ('M','MASCULINO'),
     )
-    
-    
-    
-    
+   
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     dob = models.DateField()

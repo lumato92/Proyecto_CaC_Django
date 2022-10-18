@@ -1,4 +1,3 @@
-
 from django import forms
 from .models import Employee, Department, Puesto
 from .widget import DatePickerInput
@@ -8,18 +7,10 @@ GENRE = (
         ('F','FEMENINO'),
         ('M','MASCULINO'),
     )
-
-
     
-    
-
 class EmployeeForm(forms.ModelForm):
-    
-   
-    
     def __init__(self,*args, **kwargs):
         super(EmployeeForm,self).__init__(*args,**kwargs)
-
         self.fields['first_name'].widget = forms.TextInput(attrs={'class':'form-control'})
         self.fields['last_name'].widget = forms.TextInput(attrs={'class':'form-control'})
         self.fields['genre'].widget = forms.Select(attrs={'class':'form-control'},choices=GENRE)
@@ -37,15 +28,12 @@ class EmployeeForm(forms.ModelForm):
         self.fields['manager'] = forms.ModelChoiceField(queryset=Employee.objects.all(),widget=forms.Select(attrs={'class':'form-control'}))
         self.fields['salary'].widget = forms.NumberInput(attrs={'class':'form-control'})
 
-    
-    
     class Meta:
         model = Employee
         
         fields = ('first_name','last_name','dob','genre','id_number','tax_id_number','email',
                   'address','phone','start_date','position','management','manager','salary','is_active')
         
-
         labels = {
             'first_name':'Nombre',
             'last_name' : 'Apellido',
@@ -64,4 +52,14 @@ class EmployeeForm(forms.ModelForm):
             'is_active' : 'Activo'
         }
 
+class DepartmentForm(forms.ModelForm):
+    name = forms.CharField(label="Department name", max_length=30)
+    description = forms.CharField(label="Department description", max_length=100)
+
+class PuestoForm(forms.ModelForm):
+    name = forms.CharField(label="Puesto name", max_length=30)
+    #name = models.CharField(max_length=30)
+    #department = models.ForeignKey(Department, on_delete =models.CASCADE)
+    #description = models.TextField()
+    #base_salary = models.FloatField()
 
