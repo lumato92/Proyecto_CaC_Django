@@ -16,6 +16,14 @@ def home(request):
     print(request.user.is_authenticated)
     if request.user.is_authenticated:
         username = request.user.username
-        return render(request,'home.html')
+        first_name = request.user.first_name
+        last_name = request.user.last_name
+        
+        context = {
+            'first_name' : first_name,
+            'last_name'  : last_name
+        }
+        
+        return render(request,'home.html', context)
     else:
         return redirect('loginUser')

@@ -28,7 +28,8 @@
 
     <div class="wrapper">
 
-        {% include 'partials/sidebar.html' %}
+        {% include 'partials/sidebar.html' with obj=context %} 
+        {% comment %} with para pasar el contexto al sidebar {% endcomment %}
         {% include 'partials/navbar.html' %}
 
 
