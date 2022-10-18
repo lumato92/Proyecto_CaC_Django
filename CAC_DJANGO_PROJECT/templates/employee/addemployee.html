@@ -3,6 +3,14 @@
 {% block content %}
 
 <div class="content-wrapper" >
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="text-dark">{{ message }}</strong>
+        </div>
+        {% endfor %}
+    {% endif %}
 
     <div class="container">
 
@@ -202,7 +210,7 @@
 
                         <button type="submit" class="btn btn-primary">
                             {% if edit %}
-                                Editar
+                                Actualizar
                         
                             {% else %}
                                 Agregar
