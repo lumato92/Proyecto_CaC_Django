@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 
 from employee.models import Employee, Department, Puesto
 
@@ -16,7 +18,7 @@ def index(request):
 # --------Employee----------------------------
 # --------Create------------------------------
 
-
+@login_required
 def addEmployee(request):
     edit = False
     if (request.method == 'POST'):
@@ -59,6 +61,7 @@ def addEmployee(request):
 
 
 # --------Index------------------------------
+@login_required
 def allEmployees(request):
     employees = Employee.objects.all()
     context = {'employees': employees}
@@ -66,6 +69,7 @@ def allEmployees(request):
 
 
 # --------Show------------------------------
+@login_required
 def infoEmployee(request, id):
     employee = Employee.objects.get(id=id)
     context = {'employee': employee}
@@ -73,6 +77,7 @@ def infoEmployee(request, id):
 
 
 # --------Edit------------------------------
+@login_required
 def editEmployee(request, id):
     employee = Employee.objects.get(id=id)
     edit = True
@@ -95,6 +100,7 @@ def editEmployee(request, id):
 
 
 # --------Destroy------------------------------
+@login_required
 def deleteEmployee(request, id):
     employee = Employee.objects.get(id=id)
     employee.delete()
@@ -104,11 +110,12 @@ def deleteEmployee(request, id):
 
 # --------End Employee------------------------------
 # --------Show Gerencias------------------------------
+@login_required
 def addManagement(request):
     # return HttpResponse ("ok")
     return render(request, "base.html")
 
-
+@login_required
 def showManagements(request):
     # return HttpResponse ("ok")
     managements = Department.objects.all()
@@ -117,6 +124,7 @@ def showManagements(request):
 
 
 # --------Show Puestos------------------------------
+@login_required
 def showPuestos(request):
     puestos = Puesto.objects.all()
     return render(request, 'employee/showpuestos.html', {'puestos': puestos})

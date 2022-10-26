@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -9,11 +10,11 @@ from employee.models import Employee
 from vendor.models import Supplier
 # Create your views here.
 
-
+@login_required
 def index(request):
     
     return render(request,'home.html')
-
+@login_required
 def home(request):
     
     if request.user.is_authenticated:
