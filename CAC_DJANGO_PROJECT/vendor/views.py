@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib import messages
 
 from vendor.models import Supplier
 from .forms import SupplierForm
@@ -11,19 +12,20 @@ def addVendor(request):
         form = SupplierForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('index')
+            messages.success(request, 'Departamento creado exitosamente!')
+            return redirect('allVendor')
         else:
             print(form.errors.as_data())
-
-            return HttpResponse("HUBO UN ERROR")
+            form_errors = form.errors
+            messages.error(request, form_errors)
+            return render(request, 'vendor/addvendor.html', {'form': form})
+            #return HttpResponse("HUBO UN ERROR")
     else:
         form = SupplierForm()
         context = {'form': form,
                    'edit': edit}
-
     # return HttpResponse(" AGREGAR PROVEEDOR")
     return render(request, 'vendor/addvendor.html', context)
-
 
 def allVendor(request):
     vendors = Supplier.objects.all()
