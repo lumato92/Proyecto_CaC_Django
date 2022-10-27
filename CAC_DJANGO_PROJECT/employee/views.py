@@ -16,7 +16,7 @@ from login.user import newUser
 def index(request):
     return HttpResponse("Pagina empleados")
 # --------Employee----------------------------
-# --------Create------------------------------
+
 
 @login_required
 def addEmployee(request):
