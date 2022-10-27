@@ -13,11 +13,8 @@
     {% endif %}
 
     <div class="container">
-
         <div class="row">
-
-            <div class="col-12">
-            
+            <div class="col-12">          
                 <div class="card card-primary">
                 <div class="card-header">
                     <h3 class="card-title">Agregar Nuevo Empleado</h3>
@@ -25,61 +22,44 @@
                 <!-- /.card-header -->
                 <!-- form start -->
                 <form method="POST">
-
                     {% csrf_token %}
                     <div class="card-body">
-
                         <h2 class="h2">Informacion Personal</h2>
-
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Nombre</label>
                                     {{form.first_name}}
-                                </div>
-                                
+                                </div>            
                             </div>
-
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Apellido</label>
                                     {{form.last_name}}
                                 </div>
-
                             </div>
-
                         </div>
 
                         <div class="row">
-
                             <div class="col-md-6">
-
                                 <div class="form-group">
                                     <label for="" >Sexo</label>
                                     {{form.genre}}
                                 </div>
                             </div>
-                            
                             <div class="col-md-6">
-
                                 <div class="form-group">
                                     <label for="" >Fecha de Nacimiento</label>
                                     {{form.dob}}
                                 </div>
                             </div>
                         </div>
-
-
-                    
-
-
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="" >DNI</label>
                                     {{form.id_number}}
                                 </div>
-
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -88,130 +68,83 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
-
                             <div class="col-md-4">
-                                
                                     <div class="form-group">
                                         <label for="" >Correo Electronico</label>
                                         {{form.email}}
                                     </div>
-                                
-
                             </div>
                             <div class="col-md-4">
-                                
                                     <div class="form-group">
                                         <label for="" >Direccion</label>
                                         {{form.address}}
                                     </div>
-                                
-
                             </div>
-
                             <div class="col-md-4">
-                                
                                 <div class="form-group">
                                     <label for="" >Telefono</label>
                                     {{form.phone}}
                                 </div>
-                            
-
                         </div>
-
                     </div>
-
-
-                        
                     <h2 class="h2">Informacion Laboral</h2>
-                        
-                        
-                        
-
-
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="" >Fecha Contratacion</label>
                                     {{form.start_date}}
                                 </div>
-
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="" >Puesto</label>
                                     {{form.position}}
-                                </div>
-
-                                
+                                </div>     
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="" >Gerencia</label>
                                     {{form.management}}
                                 </div>
-
-
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="" >Supervisor</label>
                                     {{form.manager}}
                                 </div>
-
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="" >Salario</label>
                                     {{form.salary}}
-
                                 </div>
-
                             </div>
                             {% comment %} <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="" >En Funcion</label>
                                     {{form.is_active}}
-
-
-
                                 </div>
-
                             </div> {% endcomment %}
-
                             <div class="col-md-4">
-
                                 <div class="form-group">
                                     <label for="">Estado de Empleado</label>
-
-                                    <div class="form-check">
-                                        
+                                    <div class="form-check">         
                                         {{form.is_active}}
                                         <label for="" class="form-check-label  justify-content-center">Activo</label>
-
                                     </div>
- 
                                 </div>
-                                
                             </div>
-
-
                         </div>
-
-
                     </div>
                     <!-- /.card-body -->
 
                     <div class="card-footer">
-
                         <button type="submit" class="btn btn-primary">
                             {% if edit %}
                                 Actualizar
-                        
                             {% else %}
                                 Agregar
                             {% endif %}                                    

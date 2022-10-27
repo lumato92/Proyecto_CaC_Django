@@ -55,13 +55,38 @@ class EmployeeForm(forms.ModelForm):
 
 
 class DepartmentForm(forms.ModelForm):
-    name = forms.CharField(label="Department name", max_length=30)
-    description = forms.CharField(label="Department description", max_length=100)
+    def __init__(self, *args, **kwargs):
+        super(DepartmentForm, self).__init__(*args, **kwargs)
+        self.fields['name'].widget = forms.TextInput(attrs={'class': 'form-control'})
+        self.fields['description'].widget = forms.TextInput(attrs={'class': 'form-control'})
+        
+    class Meta:
+        model = Department
+        fields = ('name', 'description')
 
+        labels = {
+            'name': 'Nombre',
+            'description': 'Description'
+        }
 
 class PuestoForm(forms.ModelForm):
-    name = forms.CharField(label="Puesto name", max_length=30)
-    # name = models.CharField(max_length=30)
-    # department = models.ForeignKey(Department, on_delete =models.CASCADE)
-    # description = models.TextField()
-    # base_salary = models.FloatField()
+    def __init__(self, *args, **kwargs):
+        super(PuestoForm, self).__init__(*args, **kwargs)
+        self.fields['name'].widget = forms.TextInput(attrs={'class': 'form-control'})
+        self.fields['description'].widget = forms.TextInput(attrs={'class': 'form-control'})
+        self.fields['base_salary'].widget = forms.NumberInput(attrs={'class': 'form-control'})
+        self.fields['department'] = forms.ModelChoiceField(queryset=Department.objects.all(),
+                                                         widget=forms.Select(attrs={'class': 'form-control'}))
+        
+    class Meta:
+        model = Puesto
+        fields = ('name', 'department','description','base_salary')
+
+        labels = {
+            'name': 'Nombre',
+            'department': 'Department',
+            'description': 'Description',
+            'base_salary': 'base_salary',
+        }
+
+    

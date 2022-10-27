@@ -12,7 +12,7 @@
         {% endfor %}
         {% endif %}
 
-        <h1 class="h1 center">Todos los Empleados</h1>
+        <h1 class="h1 center">Todos los Departamentos</h1>
 
         <div class="container">
             <div class="row">
@@ -20,21 +20,24 @@
                     <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">Departamento</th>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Descripcion</th>
                                 <th scope="col">Acciones</th>
-
                             </tr>
                         </thead>
                         <tbody>
 
-                            {% for management in managements %}
+                            {% for department in departments %}
 
                             <tr>
-                                <td>{{management.name}}</td>
+                                <th scope="row">{{department.id}}</th>
+                                <td>{{department.name}}</td>
+                                <td>{{department.description}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" onclick="location.href='{% url 'infoManagement' id=management.id %}'" ><i class="far fa-eye"></i></button>
-                                    <button type="button" class="btn btn-success" ><i class="fas fa-edit"></i></button>
-                                    <button type="button" class="btn btn-danger" ><i class="far fa-trash-alt"></i></button>
+                                    <button type="button" class="btn btn-primary" onclick="location.href='{% url 'infoDepartment' id=department.id %}'"><i class="far fa-eye"></i></button>
+                                    <button type="button" class="btn btn-success" onclick="location.href='{% url 'editDepartment' id=department.id %}'"><i class="fas fa-edit"></i></button>
+                                    <button type="button" class="btn btn-danger" onclick="location.href='{% url 'deleteDepartment' id=department.id %}'"><i class="far fa-trash-alt"></i></button>
                                 </td>
                             </tr>
                             

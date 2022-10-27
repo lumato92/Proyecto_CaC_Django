@@ -4,15 +4,14 @@ from django.contrib import messages
 
 from employee.models import Employee, Department, Puesto
 
-from .forms import EmployeeForm
+from .forms import EmployeeForm,DepartmentForm,PuestoForm
 
 
 def index(request):
     return HttpResponse("Pagina empleados")
+
 # --------Employee----------------------------
 # --------Create------------------------------
-
-
 def addEmployee(request):
     edit = False
     if (request.method == 'POST'):
@@ -37,22 +36,16 @@ def addEmployee(request):
                    'edit': edit}
 
     return render(request, 'employee/addemployee.html', context)
-
-
 # --------Index------------------------------
 def allEmployees(request):
     employees = Employee.objects.all()
     context = {'employees': employees}
     return render(request, 'employee/allemployee.html', context)
-
-
 # --------Show------------------------------
 def infoEmployee(request, id):
     employee = Employee.objects.get(id=id)
     context = {'employee': employee}
     return render(request, 'employee/infoemployee.html', context)
-
-
 # --------Edit------------------------------
 def editEmployee(request, id):
     employee = Employee.objects.get(id=id)
@@ -71,95 +64,137 @@ def editEmployee(request, id):
         employeeform = EmployeeForm(instance=employee)
         context = {'form': employeeform,
                    'edit': edit}
-
     return render(request, 'employee/addemployee.html', context)
-
-
 # --------Destroy------------------------------
 def deleteEmployee(request, id):
     employee = Employee.objects.get(id=id)
     employee.delete()
     messages.error(request, 'Document deleted.')
     return redirect('allEmployee')
-
-
 # --------End Employee------------------------------
-# --------Show Gerencias------------------------------
-def addManagement(request):
-    # return HttpResponse ("ok")
-    return render(request, "base.html")
-
-
-def showManagements(request):
-    # return HttpResponse ("ok")
-    managements = Department.objects.all()
-    # return HttpResponse(f"""<h1> Listado de proyectos </h1>""")
-    return render(request, 'employee/showmanagements.html', {'managements': managements})
-
+#----------------------------------------------------------------------
 
 # --------Show Puestos------------------------------
 def showPuestos(request):
     puestos = Puesto.objects.all()
     return render(request, 'employee/showpuestos.html', {'puestos': puestos})
 
-
-"""
---------Department--------------------------
---------Create------------------------------
+#---------Departments----------------------------------------------------
+#--------Index-----------------------------------------------------------
+def allDepartments(request):
+    departments = Department.objects.all()
+    context = { 'departments' : departments}
+    return render(request,'department/alldepartment.html', context)
+# --------Show------------------------------
+def infoDepartment(request, id):
+    department = Department.objects.get(id=id)
+    context = {'department': department}
+    return render(request, 'department/infodepartment.html', context)
+# --------Create----------------------------------------------------------
 def addDepartment(request):
     edit = False
     if (request.method == 'POST'):
         form = DepartmentForm(request.POST)
         if form.is_valid():
             form.save()
-            #return HttpResponse("Empleado agregado")
             messages.success(request, 'Departamento creado exitosamente!')
-            return redirect('allDepartment')
+            return redirect('showDepartments')
         else:
+            print(form.errors.as_data())
             form_errors = form.errors
-            messages.error(request, form_errors )
-            return render(request, 'department/adddepartment.html', { 'form': form })
+            messages.error(request, form_errors)
+            return render(request, 'department/adddepartment.html', {'form': form})
     else:
         form = DepartmentForm()
-        context = {'form':form,
+        context = {'form': form,
                    'edit': edit}
-    return render(request,'department/adddepartment.html',context)
 
-#--------Index------------------------------
-def allDepartments(request):
-    departments = Department.objects.all()
-    context = { 'departments' : departments}
-    return render(request,'department/alldepartment.html', context)
-#--------Show------------------------------
-def infoDepartment(request,id):
-    department = Department.objects.get(id=id)
-    context = {'department' : department}
-    return render(request,'department/infodepartment.html',context)
-#--------Edit------------------------------
-def editDepartment(request,id):
+    return render(request, 'department/adddepartment.html', context)
+
+# --------Edit------------------------------
+def editDepartment(request, id):
     department = Department.objects.get(id=id)
     edit = True
     if request.method == 'POST':
-        form = DepartmentForm(request.POST,instance=department)
+        form = DepartmentForm(request.POST, instance=department)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Se actualizo el departmanto!')
-            return redirect('allDepartment')
+            messages.success(request, 'Se actualizo el departamento!')
+            return redirect('showDepartments')
         else:
             print(form.errors.as_data())
-            #return HttpResponse("HUBO UN ERROR")
             messages.warning(request, 'HUBO UN ERROR')
-            return redirect('allDepartment')
+            return redirect('showDepartments')
     else:
-        departmentform = DepartmentForm(instance = department)
-        context = {'form' : departmentform,
-                   'edit' : edit}
-    return render(request,'department/adddepartment.html',context)
-#--------Destroy------------------------------
+        departmentform = DepartmentForm(instance=department)
+        context = {'form': departmentform,
+                   'edit': edit}
+    return render(request, 'department/adddepartment.html', context)
+# --------Destroy------------------------------
 def deleteDepartment(request, id):
     department = Department.objects.get(id=id)
     department.delete()
-    messages.error(request, 'Department deleted.')
-    return redirect('allDepartment')
-#--------End Employee------------------------------
-"""
+    messages.error(request, 'Document deleted.')
+    return redirect('showDepartments')
+
+#---------Departments END---------------------------------------------------
+
+#---------Puestos----------------------------------------------------
+#--------Index-----------------------------------------------------------
+def allPuestos(request):
+    puestos = Puesto.objects.all()
+    context = { 'puestos' : puestos}
+    return render(request,'puesto/allpuestos.html', context)
+# --------Show------------------------------
+def infoPuesto(request, id):
+    puesto = Puesto.objects.get(id=id)
+    context = {'puesto': puesto}
+    return render(request, 'puesto/infopuesto.html', context)
+# --------Create----------------------------------------------------------
+def addPuesto(request):
+    edit = False
+    if (request.method == 'POST'):
+        form = PuestoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Puesto creado exitosamente!')
+            return redirect('showPuestos')
+        else:
+            print(form.errors.as_data())
+            form_errors = form.errors
+            messages.error(request, form_errors)
+            return render(request, 'puesto/addpuesto.html', {'form': form})
+    else:
+        form = PuestoForm()
+        context = {'form': form,
+                   'edit': edit}
+
+    return render(request, 'puesto/addpuesto.html', context)
+
+# --------Edit------------------------------
+def editPuesto(request, id):
+    puesto = Puesto.objects.get(id=id)
+    edit = True
+    if request.method == 'POST':
+        form = PuestoForm(request.POST, instance=puesto)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Se actualizo el puesto!')
+            return redirect('showPuestos')
+        else:
+            print(form.errors.as_data())
+            messages.warning(request, 'HUBO UN ERROR')
+            return redirect('showPuestos')
+    else:
+        puestoform = PuestoForm(instance=puesto)
+        context = {'form': puestoform,
+                   'edit': edit}
+    return render(request, 'puesto/addpuesto.html', context)
+# --------Destroy------------------------------
+def deletePuesto(request, id):
+    puesto = Puesto.objects.get(id=id)
+    puesto.delete()
+    messages.error(request, 'Puesto borrado con exito.')
+    return redirect('showPuestos')
+
+#---------Departments END---------------------------------------------------
