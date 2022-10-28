@@ -1,8 +1,10 @@
 *.sqlite3
 *.pyc
 env/
+profile_images/
 corona-free-dark-bootstrap-admin-template-1.0.0
 AdminLTE-3.2.0
 CAC_DJANGO_PROJECT/*.sqlite3
 Proyecto_CaC_Django/CAC_DJANGO_PROJECT/static/lib/adminlte3.2.0/css/alt
 env/
+

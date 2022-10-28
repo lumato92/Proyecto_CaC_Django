@@ -18,10 +18,7 @@
     <link rel="stylesheet" href={% static 'lib/adminlte3.2.0/css/adminlte.min.css' %}>
 
     {% block styles %}
-    
     {% endblock styles %}
-
-
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -31,26 +28,32 @@
         {% include 'partials/sidebar.html' with obj=context %} 
         {% comment %} with para pasar el contexto al sidebar {% endcomment %}
         {% include 'partials/navbar.html' %}
-
-
-            {% block content %}
-            
-            {% endblock content %}
-     
-
-
+            <div class="content-wrapper" >
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-dismissible alert-success">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong class="text-dark">{{ message }}</strong>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="container">
+                    {% block content %}       
+                    {% endblock content %}
+                </div>      
+            </div>
         {% include 'partials/footer.html' %}
 
     </div>
-
-
     
 <!-- jQuery -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
 <!-- Bootstrap 4 -->
-
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+
+{% block js %}
+{% endblock js %}
+
 </body>
 </html>

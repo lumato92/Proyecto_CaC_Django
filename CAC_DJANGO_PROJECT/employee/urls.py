@@ -3,12 +3,11 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.index, name='employee_index'),
+    path('', views.allEmployees, name='allEmployee'),
     path("add/", views.addEmployee, name="addEmployee"),
-    path('all/', views.allEmployees, name='allEmployee'),
     path('info/<int:id>', views.infoEmployee, name='infoEmployee'),
     path('edit/<int:id>', views.editEmployee, name='editEmployee'),
-    #path('management/', views.addManagement, name='addManagement'),
+    # path('management/', views.addManagement, name='addManagement'),
     path('delete/<int:id>', views.deleteEmployee, name='deleteEmployee'),
     # -----URL Managements/Departmens--------#
     path('departments/', views.allDepartments, name='showDepartments'),
@@ -22,5 +21,4 @@ urlpatterns = [
     path('puestos/add', views.addPuesto, name='addPuesto'),
     path('puestos/edit/<int:id>', views.editPuesto, name='editPuesto'),
     path('puestos/delete/<int:id>', views.deletePuesto, name='deletePuesto'),
-    
 ]

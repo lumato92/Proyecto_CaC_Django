@@ -8,6 +8,8 @@ GENRE = (
 
 
 class EmployeeForm(forms.ModelForm):
+    avatar = forms.ImageField()
+    
     def __init__(self, *args, **kwargs):
         super(EmployeeForm, self).__init__(*args, **kwargs)
         self.fields['first_name'].widget = forms.TextInput(attrs={'class': 'form-control'})
@@ -33,7 +35,8 @@ class EmployeeForm(forms.ModelForm):
     class Meta:
         model = Employee
         fields = ('first_name', 'last_name', 'dob', 'genre', 'id_number', 'tax_id_number', 'email',
-                  'address', 'phone', 'start_date', 'position', 'management', 'manager', 'salary', 'is_active')
+                  'address', 'phone', 'start_date', 'position', 'management', 'manager', 'salary',
+                  'is_active', 'avatar')
 
         labels = {
             'first_name': 'Nombre',
@@ -50,7 +53,8 @@ class EmployeeForm(forms.ModelForm):
             'management': 'Gerencia',
             'manager': 'Jefe',
             'salary': 'Salario',
-            'is_active': 'Activo'
+            'is_active': 'Activo',
+            'avatar': 'Imagen'
         }
 
 
@@ -59,7 +63,7 @@ class DepartmentForm(forms.ModelForm):
         super(DepartmentForm, self).__init__(*args, **kwargs)
         self.fields['name'].widget = forms.TextInput(attrs={'class': 'form-control'})
         self.fields['description'].widget = forms.TextInput(attrs={'class': 'form-control'})
-        
+
     class Meta:
         model = Department
         fields = ('name', 'description')
@@ -69,6 +73,7 @@ class DepartmentForm(forms.ModelForm):
             'description': 'Description'
         }
 
+
 class PuestoForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(PuestoForm, self).__init__(*args, **kwargs)
@@ -76,11 +81,11 @@ class PuestoForm(forms.ModelForm):
         self.fields['description'].widget = forms.TextInput(attrs={'class': 'form-control'})
         self.fields['base_salary'].widget = forms.NumberInput(attrs={'class': 'form-control'})
         self.fields['department'] = forms.ModelChoiceField(queryset=Department.objects.all(),
-                                                         widget=forms.Select(attrs={'class': 'form-control'}))
-        
+                                                           widget=forms.Select(attrs={'class': 'form-control'}))
+
     class Meta:
         model = Puesto
-        fields = ('name', 'department','description','base_salary')
+        fields = ('name', 'department', 'description', 'base_salary')
 
         labels = {
             'name': 'Nombre',
@@ -88,5 +93,3 @@ class PuestoForm(forms.ModelForm):
             'description': 'Description',
             'base_salary': 'base_salary',
         }
-
-    
