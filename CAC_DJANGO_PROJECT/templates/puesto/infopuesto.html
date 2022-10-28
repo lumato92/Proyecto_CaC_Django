@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="content-wrapper">
+    <h1 class="h1">
+        Informacion del puesto
+    </h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">                
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Nombre</label>
+                                    {{puesto.name}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Descripcion</label>
+                                    {{puesto.description}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Departamento</label>
+                                    {{puesto.department}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Salario</label>
+                                    {{puesto.base_salary}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="button" class="btn btn-primary" onclick="location.href='{% url 'showPuestos' %}'">Volver</button>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -16,7 +16,7 @@
           <img src={% static 'lib/adminlte3.2.0/img/user2-160x160.jpg' %} class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{user.first_name}} {{user.last_name}}</a>
         </div>
       </div>
 
@@ -41,63 +41,49 @@
           <li class="nav-header">
             <a href={% url 'home' %} class"nav-link"><i class="nav-icon fa-solid fa-home"></i> Home</a>
           </li>
-          <li class="nav-header">EMPLOYEES</li>
-          <li class="nav-item">
-            <a href={% url 'addEmployee' %} class="nav-link">
-              <i class="nav-icon fa-solid fa-person-circle-plus"></i>
-              <p>
-                Agregar empleado
-                
-              </p>
+          <li class="nav-header">Empleados</li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+              Informacion Empresa
             </a>
+            <div class="dropdown-menu">
+              <a href={% url 'addEmployee' %} class="dropdown-item"><i class="nav-icon fa-solid fa-person-circle-plus"></i>Ingresar personal</a>
+              <a href={% url 'allEmployee' %} class="dropdown-item "><i class="fa fa-users" aria-hidden="true"></i> Listar empleados</a>
+            </div>
           </li>
-          <li class="nav-item">
-            <a href={% url 'allEmployee' %} class="nav-link">
-              <i class="nav-icon fa-solid fa-people"></i>
-              <p>
-                Todos 
-              </p>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+              Puestos
             </a>
+            <div class="dropdown-menu">
+              <a href={% url 'showPuestos' %} class="dropdown-item "><i class="fa fa-address-card-o" aria-hidden="true"></i> Listar Puestos</a>
+              <a href={% url 'addPuesto' %} class="dropdown-item "><i class="fa fa-address-card-o" aria-hidden="true"></i> Ingresar puesto</a>
+            </div>
           </li>
-
-          <li class="nav-item">
-            <a href={% url 'showPuestos' %} class="nav-link">
-              <i class="nav-icon fa-solid fa-people"></i>
-              <p>
-                Puestos 
-              </p>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+              Gerencias
             </a>
+            <div class="dropdown-menu">
+              <a href={% url 'addDepartment' %} class="dropdown-item "><i class="fa fa-address-card-o" aria-hidden="true"></i>Ingresar Gerencia </a>
+              <a href={% url 'showDepartments' %} class="dropdown-item "><i class="fa fa-address-card-o" aria-hidden="true"></i> Listar Gerencias</a>
+            </div>
           </li>
-
-          <li class="nav-item">
-            <a href={% url 'showManagements' %} class="nav-link">
-              <i class="nav-icon fa-solid fa-people"></i>
-              <p>
-                Gerencias 
-              </p>
-            </a>
-          </li>
-
+          
           <li class="nav-header">Proveedores</li>
-          <li class="nav-item">
-            <a href={% url 'addVendor' %} class="nav-link">
-              <i class="nav-icon fa-solid fa-person-circle-plus"></i>
-              <p>
-                Agregar Proveedor
-                
-              </p>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+              Informacion Empresa
             </a>
+            <div class="dropdown-menu">
+              <a href={% url 'addVendor' %} class="dropdown-item"><i class="nav-icon fa-solid fa-person-circle-plus"></i> Ingresar proveedor</a>
+              <a href={% url 'addVendor' %} class="dropdown-item "><i class="nav-icon fa-solid fa-warehouse"></i> Ver proveedores</a>
+            </div>
           </li>
-          <li class="nav-item">
-            <a href={% url 'allVendor' %} class="nav-link">
-              <i class="nav-icon fa-solid fa-warehouse"></i>
-              <p>
-                Todos los Proveedores
-              </p>
-            </a>
-          </li>
-          
-          
       </div><!-- /.container-fluid -->
     </section>
 
