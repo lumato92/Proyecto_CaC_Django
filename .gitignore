@@ -1,3 +1,5 @@
 *.sqlite3
 *.pyc
+CAC_DJANGO_PROJECT/db.sqlite3
 env/
+CAC_DJANGO_PROJECT/db.sqlite3
