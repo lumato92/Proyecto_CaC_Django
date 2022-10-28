@@ -3,9 +3,9 @@
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{% url 'index' %}" class="brand-link">
+    <a href="{% url 'home' %}" class="brand-link">
       <img src={% static 'img/logo.jpg' %} alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">Grupo 5 - CaC</span>
     </a>
 
     <!-- Sidebar -->
@@ -13,16 +13,20 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <a href="{% url 'users-profile' %} ">
+          <a href="{% url 'allEmployee' %}">
             <img 
-              src={{ user.profile.avatar.url }}
+              {% if employee %}
+                src="{{ employee.avatar.url }}"
+              {% else %}
+                src="{% static 'img/admin.png' %}"
+              {% endif %}
               class="img-circle elevation-2"
               alt="User Image"
             >
           </a>
         </div>
         <div class="info">
-          <a href="{% url 'users-profile' %} ">
+          <a href="{% url 'allEmployee' %} ">
             {% if user.first_name %}
               {{ user.first_name|capfirst }} {{ user.last_name|capfirst }}
             {% else %}

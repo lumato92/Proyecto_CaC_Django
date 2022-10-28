@@ -89,53 +89,76 @@
                         </div>
                     </div>
                     <h2 class="h2">Informacion Laboral</h2>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="" >Fecha Contratacion</label>
-                                    {{form.start_date}}
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="" >Fecha Contratacion</label>
+                                        {{form.start_date}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="" >Puesto</label>
+                                        {{form.position}}
+                                    </div>     
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="" >Puesto</label>
-                                    {{form.position}}
-                                </div>     
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="" >Gerencia</label>
+                                        {{form.management}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="" >Supervisor</label>
+                                        {{form.manager}}
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="" >Gerencia</label>
-                                    {{form.management}}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="" >Salario</label>
+                                        {{form.salary}}
+                                    </div>
+                                </div>
+                                {% comment %} <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="" >En Funcion</label>
+                                        {{form.is_active}}
+                                    </div>
+                                </div> {% endcomment %}
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Estado de Empleado</label>
+                                        <div class="form-check">         
+                                            {{form.is_active}}
+                                            <label for="" class="form-check-label  justify-content-center">Activo</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="" >Supervisor</label>
-                                    {{form.manager}}
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="">Imagen</label>         
+                                {{form.avatar}}
+                                
+                                {% if employee %}
+                                <div>
+                                    <img 
+                                        src="{{ employee.avatar.url }}"
+                                        alt="User Image"
+                                        width="150"
+                                        height="150"
+                                        class="my-2"
+                                    >
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="" >Salario</label>
-                                    {{form.salary}}
-                                </div>
-                            </div>
-                            {% comment %} <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="" >En Funcion</label>
-                                    {{form.is_active}}
-                                </div>
-                            </div> {% endcomment %}
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="">Estado de Empleado</label>
-                                    <div class="form-check">         
-                                        {{form.is_active}}
-                                        <label for="" class="form-check-label  justify-content-center">Activo</label>
-                                    </div>
-                                </div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

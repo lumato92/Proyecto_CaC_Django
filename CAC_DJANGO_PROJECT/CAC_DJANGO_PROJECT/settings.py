@@ -41,8 +41,6 @@ INSTALLED_APPS = [
     # App propias
     'auth0',
     'employee',
-    'login',
-    'users.apps.UserConfig',
     'vendor',
 ]
 

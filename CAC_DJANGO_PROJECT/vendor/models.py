@@ -15,6 +15,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "Categoría"
+
 
 class Supplier(models.Model):
     name = models.CharField(max_length=30)
@@ -26,3 +29,6 @@ class Supplier(models.Model):
     email = models.EmailField()
     description = models.TextField(null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
+
+    class Meta:
+        verbose_name = "Proveedor"

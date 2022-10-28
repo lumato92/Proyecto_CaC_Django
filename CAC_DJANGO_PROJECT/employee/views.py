@@ -6,41 +6,37 @@ from django.contrib.auth.decorators import login_required
 
 from employee.models import Employee, Department, Puesto
 
-from .forms import EmployeeForm,DepartmentForm,PuestoForm
-
 from .forms import EmployeeForm, DepartmentForm, PuestoForm
 
 from login.user import newUser
 # Create your views here.
 
+
 def index(request):
     return HttpResponse("Pagina empleados")
 
+
 # --------Employee----------------------------
 # --------Create------------------------------
-
 @login_required
 def addEmployee(request):
     edit = False
     if (request.method == 'POST'):
         form = EmployeeForm(request.POST)
-   
-
         if form.is_valid():
             form.save()
-            
+
             name = form.cleaned_data.get('first_name')
             lastName = form.cleaned_data.get('last_name')
             email = form.cleaned_data.get('email')
             position = form.cleaned_data.get('position')
             print(position)
-            
-            if newUser(name,lastName,email,position):
+
+            if newUser(name, lastName, email, position):
                 print("USER CREADO")
             else:
                 print("error")
-                        
-            #return HttpResponse("Empleado agregado")
+            # return HttpResponse("Empleado agregado")
             messages.success(request, 'Empleado agregado exitosamente!')
             return redirect('allEmployee')
         else:
@@ -59,18 +55,24 @@ def addEmployee(request):
                    'edit': edit}
 
     return render(request, 'employee/addemployee.html', context)
+
+
 # --------Index------------------------------
 @login_required
 def allEmployees(request):
     employees = Employee.objects.all()
     context = {'employees': employees}
     return render(request, 'employee/allemployee.html', context)
+
+
 # --------Show------------------------------
 @login_required
 def infoEmployee(request, id):
     employee = Employee.objects.get(id=id)
     context = {'employee': employee}
     return render(request, 'employee/infoemployee.html', context)
+
+
 # --------Edit------------------------------
 @login_required
 def editEmployee(request, id):
@@ -89,8 +91,12 @@ def editEmployee(request, id):
     else:
         employeeform = EmployeeForm(instance=employee)
         context = {'form': employeeform,
-                   'edit': edit}
+                   'edit': edit,
+                   'employee': employee}
+
     return render(request, 'employee/addemployee.html', context)
+
+
 # --------Destroy------------------------------
 @login_required
 def deleteEmployee(request, id):
@@ -99,11 +105,14 @@ def deleteEmployee(request, id):
     messages.error(request, 'Document deleted.')
     return redirect('allEmployee')
 # --------End Employee------------------------------
+
+
 # --------Show Gerencias------------------------------
 @login_required
 def addManagement(request):
     # return HttpResponse ("ok")
     return render(request, "base.html")
+
 
 @login_required
 def showManagements(request):
@@ -119,19 +128,24 @@ def showPuestos(request):
     puestos = Puesto.objects.all()
     return render(request, 'employee/showpuestos.html', {'puestos': puestos})
 
-#---------Departments----------------------------------------------------
-#--------Index-----------------------------------------------------------
+
+# ---------Departments----------------------------------------------------
+# --------Index-----------------------------------------------------------
 @login_required
 def allDepartments(request):
     departments = Department.objects.all()
-    context = { 'departments' : departments}
-    return render(request,'department/alldepartment.html', context)
+    context = {'departments': departments}
+    return render(request, 'department/alldepartment.html', context)
+
+
 # --------Show------------------------------
 @login_required
 def infoDepartment(request, id):
     department = Department.objects.get(id=id)
     context = {'department': department}
     return render(request, 'department/infodepartment.html', context)
+
+
 # --------Create----------------------------------------------------------
 @login_required
 def addDepartment(request):
@@ -154,6 +168,7 @@ def addDepartment(request):
 
     return render(request, 'department/adddepartment.html', context)
 
+
 # --------Edit------------------------------
 @login_required
 def editDepartment(request, id):
@@ -174,6 +189,8 @@ def editDepartment(request, id):
         context = {'form': departmentform,
                    'edit': edit}
     return render(request, 'department/adddepartment.html', context)
+
+
 # --------Destroy------------------------------
 @login_required
 def deleteDepartment(request, id):
@@ -182,21 +199,26 @@ def deleteDepartment(request, id):
     messages.error(request, 'Document deleted.')
     return redirect('showDepartments')
 
-#---------Departments END---------------------------------------------------
 
-#---------Puestos----------------------------------------------------
-#--------Index-----------------------------------------------------------
+# ---------Departments END---------------------------------------------------
+
+# ---------Puestos----------------------------------------------------
+# --------Index-----------------------------------------------------------
 @login_required
 def allPuestos(request):
     puestos = Puesto.objects.all()
-    context = { 'puestos' : puestos}
-    return render(request,'puesto/allpuestos.html', context)
+    context = {'puestos': puestos}
+    return render(request, 'puesto/allpuestos.html', context)
+
+
 # --------Show------------------------------
 @login_required
 def infoPuesto(request, id):
     puesto = Puesto.objects.get(id=id)
     context = {'puesto': puesto}
     return render(request, 'puesto/infopuesto.html', context)
+
+
 # --------Create----------------------------------------------------------
 @login_required
 def addPuesto(request):
@@ -219,6 +241,7 @@ def addPuesto(request):
 
     return render(request, 'puesto/addpuesto.html', context)
 
+
 # --------Edit------------------------------
 @login_required
 def editPuesto(request, id):
@@ -239,6 +262,8 @@ def editPuesto(request, id):
         context = {'form': puestoform,
                    'edit': edit}
     return render(request, 'puesto/addpuesto.html', context)
+
+
 # --------Destroy------------------------------
 @login_required
 def deletePuesto(request, id):
@@ -247,4 +272,4 @@ def deletePuesto(request, id):
     messages.error(request, 'Puesto borrado con exito.')
     return redirect('showPuestos')
 
-#---------Departments END---------------------------------------------------
+# ---------Departments END---------------------------------------------------
