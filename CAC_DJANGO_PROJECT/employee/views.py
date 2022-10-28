@@ -79,7 +79,10 @@ def editEmployee(request, id):
     employee = Employee.objects.get(id=id)
     edit = True
     if request.method == 'POST':
-        form = EmployeeForm(request.POST, instance=employee)
+        post_data = request.POST or None
+        file_data = request.FILES or None
+
+        form = EmployeeForm(post_data, file_data, instance=employee)
         if form.is_valid():
             form.save()
             messages.success(request, 'Se actualizo el empleado!')

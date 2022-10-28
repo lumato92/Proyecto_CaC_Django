@@ -9,7 +9,7 @@ GENRE = (
 
 class EmployeeForm(forms.ModelForm):
     avatar = forms.ImageField()
-
+    
     def __init__(self, *args, **kwargs):
         super(EmployeeForm, self).__init__(*args, **kwargs)
         self.fields['first_name'].widget = forms.TextInput(attrs={'class': 'form-control'})
