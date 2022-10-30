@@ -46,7 +46,6 @@
                         </div>
 
                         <div class="row">
-
                             <div class="col-md-6">
 
                                 <div class="form-group">
@@ -54,9 +53,7 @@
                                     {{employee.genre}}
                                 </div>
                             </div>
-                            
                             <div class="col-md-6">
-
                                 <div class="form-group">
                                     <label for="" >Fecha de Nacimiento</label>
                                     {{employee.dob}}
@@ -64,23 +61,26 @@
                             </div>
                         </div>
 
-
-                    
-
-
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="" >DNI</label>
                                     {{employee.id_number}}
                                 </div>
-
-                            </div>
-                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="" >CUIL</label>
                                     {{employee.tax_id_number}}
                                 </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Imagen</label>
+                                <img 
+                                    src="{{ employee.avatar.url }}"
+                                    alt="User Image"
+                                    width="150"
+                                    height="150"
+                                    class="mb-3"
+                                >
                             </div>
                         </div>
 

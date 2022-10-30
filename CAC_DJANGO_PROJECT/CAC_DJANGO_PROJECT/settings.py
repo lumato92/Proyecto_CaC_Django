@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # App propias
+    'auth0',
     'employee',
     'vendor',
-    'auth0'
 ]
 
 MIDDLEWARE = [
@@ -124,13 +126,16 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
     '/var/www/static/',
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#LOGIN SETTINGS
-
+# LOGIN SETTINGS
 
 LOGIN_URL = '/auth0/login/'
-LOGIN_REDIRECT_URL='/auth0/login/'
+LOGIN_REDIRECT_URL = '/auth0/login/'
