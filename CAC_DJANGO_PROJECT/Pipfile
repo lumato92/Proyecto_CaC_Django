@@ -10,6 +10,7 @@ pytz = "==2022.2.1"
 six = "==1.16.0"
 sqlparse = "==0.4.3"
 tzdata = "==2022.2"
+pillow = "==9.1.1"
 
 [dev-packages]
 
