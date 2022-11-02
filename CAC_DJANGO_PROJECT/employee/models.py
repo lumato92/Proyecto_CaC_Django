@@ -69,3 +69,17 @@ class Employee(models.Model):
             new_img = (200, 200)
             img.thumbnail(new_img)
             img.save(self.avatar.path)
+            
+
+# Horas Extras
+
+class OverTime(models.Model):
+    
+    employee_id = models.ForeignKey(Employee, on_delete = models.DO_NOTHING ,blank = False, null = False)
+    date = models.DateField()
+    amount = models.FloatField()
+    percent = models.BooleanField()
+    
+    class Meta:
+        
+        verbose_name = 'Horas Extra'
