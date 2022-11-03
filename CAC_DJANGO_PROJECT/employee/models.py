@@ -51,6 +51,7 @@ class Employee(models.Model):
     salary = models.FloatField(null=True)
     is_active = models.BooleanField(default=True)
     username = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    # username = models.OneToOneField(User, on_delete=models.CASCADE, blank=True , null= True)
     avatar = models.ImageField(default='img/no-image.png', upload_to='profile_images')
 
     class Meta:
