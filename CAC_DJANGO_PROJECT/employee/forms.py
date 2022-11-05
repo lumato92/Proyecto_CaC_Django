@@ -1,5 +1,5 @@
 from django import forms
-from .models import Employee, Department, Puesto
+from .models import Employee, Department, Message, Puesto
 
 GENRE = (
         ('F', 'FEMENINO'),
@@ -9,7 +9,7 @@ GENRE = (
 
 class EmployeeForm(forms.ModelForm):
     avatar = forms.ImageField()
-    
+
     def __init__(self, *args, **kwargs):
         super(EmployeeForm, self).__init__(*args, **kwargs)
         self.fields['first_name'].widget = forms.TextInput(attrs={'class': 'form-control'})
@@ -92,4 +92,40 @@ class PuestoForm(forms.ModelForm):
             'department': 'Department',
             'description': 'Description',
             'base_salary': 'base_salary',
+        }
+
+
+class exMessageForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(MessageForm, self).__init__(*args, **kwargs)
+        self.fields['receiver'].widget = forms.Select(attrs={'class': 'form-select mb-3'})
+        self.fields['receiver'].label = 'Destinatario'
+        self.fields['msg_content'].widget = forms.TextInput(attrs={'class': 'form-control'})
+        self.fields['msg_content'].label = 'Mensaje'
+
+    class Meta:
+        model = Message
+        fields = ('receiver', 'msg_content')
+
+
+class MessageForm(forms.ModelForm):
+    receiver = forms.Select()
+
+    class Meta:
+        model = Message
+
+        fields = ['receiver', 'msg_content']
+
+        widgets = {
+            'receiver': forms.Select(
+                attrs={
+                    'class': "form-control mb-3"
+                }
+            ),
+            'msg_content': forms.TextInput(
+                attrs={
+                    'class': "form-control mb-3"
+                }
+            )
         }
