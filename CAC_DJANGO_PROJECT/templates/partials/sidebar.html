@@ -1,7 +1,7 @@
-
 {% load static %}
 
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{% url 'home' %}" class="brand-link">
       <img src={% static 'img/logo.jpg' %} alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -15,8 +15,8 @@
         <div class="image">
           <a href="{% url 'allEmployee' %}">
             <img 
-              {% if employee %}
-                src="{{ employee.avatar.url }}"
+              {% if user.employee.avatar.url %}
+                src="{{ user.employee.avatar.url }}"
               {% else %}
                 src="{% static 'img/admin.png' %}"
               {% endif %}
@@ -36,197 +36,156 @@
         </div>
       </div>
 
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-
-          <li class="nav-header">
-            <a href={% url 'home' %} class"nav-link"><i class="nav-icon fa-solid fa-home"></i> Home</a>
-          </li>
-          <li class="nav-header">Empleados</li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="fa fa-users" aria-hidden="true"></i>
+            <a href="{% url 'home' %}" class="nav-link">
+               <i class="nav-icon fa-solid fa-house"></i>
               <p>
-                Información Empresa
-                <i class="fas fa-angle-left right"></i>
+                Home
               </p>
             </a>
-            <ul class="nav nav-treeview" style="display: none;">
+          </li>
+
+          <!-- Empleados -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa-solid fa-users"></i>
+              <p>
+                Empleados
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href={% url 'addEmployee' %} class="nav-link">
-                  <i class="nav-icon fa-solid fa-person-circle-plus"></i>
-                  <p>Ingresar personal</p>
+                <a href="{% url 'addEmployee' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ingresar Personal</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href={% url 'allEmployee' %} class="nav-link">
-                  <i class="fa fa-users" aria-hidden="true"></i>
+                <a href="{% url 'allEmployee' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
                   <p>Listar empleados</p>
                 </a>
               </li>
             </ul>
           </li>
+          <!-- Fin Empleados -->
+
+          <!-- Puestos -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="fa fa-address-card-o" aria-hidden="true"></i>
+              <i class="nav-icon fas fa-building"></i>
               <p>
                 Puestos
-                <i class="fas fa-angle-left right"></i>
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview" style="display: none;">
+            <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href={% url 'addPuesto' %} class="nav-link">
-                  <i class="fa fa-address-card-o" aria-hidden="true"></i>
-                  <p>Ingresar puesto</p>
+                <a href="{% url 'addPuesto' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ingresar Puesto</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href={% url 'showPuestos' %} class="nav-link">
-                  <i class="fa fa-address-card-o" aria-hidden="true"></i>
-                  <p>Listar puestos</p>
+                <a href="{% url 'showPuestos' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Listar Puestos</p>
                 </a>
               </li>
             </ul>
           </li>
+          <!-- Fin Puestos -->
+
+          <!-- Gerencias -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="fa fa-address-card-o" aria-hidden="true"></i>
+              <i class="nav-icon fa-solid fa-sitemap"></i>
               <p>
                 Gerencias
-                <i class="fas fa-angle-left right"></i>
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview" style="display: none;">
+            <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href={% url 'addDepartment' %} class="nav-link">
-                  <i class="fa fa-address-card-o" aria-hidden="true"></i>
-                  <p>Ingresar gerencia</p>
+                <a href="{% url 'addDepartment' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ingresar Gerencia</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href={% url 'showDepartments' %} class="nav-link">
-                  <i class="fa fa-address-card-o" aria-hidden="true"></i>
-                  <p>Listar gerencias</p>
+                <a href="{% url 'showDepartments' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Listar Gerencias</p>
                 </a>
               </li>
             </ul>
           </li>
+          <!-- Fin Gerencias -->
 
-          
-          
-          <li class="nav-header">Proveedores</li> 
-          {% comment %} Se deja {% endcomment %}
+          <!-- Proveedores -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fa-solid fa-warehouse"></i>
+              <i class="nav-icon fas fa-shopping-cart"></i>
               <p>
-                Información Empresa
-                <i class="fas fa-angle-left right"></i>
+                Proveedores
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview" style="display: none;">
+            <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href={% url 'addVendor' %} class="nav-link">
-                  <i class="nav-icon fa-solid fa-person-circle-plus"></i>
-                  <p>Ingresar proveedor</p>
+                <a href="{% url 'addVendor' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ingresar Proveedor</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href={% url 'addVendor' %} class="nav-link">
-                  <i class="nav-icon fa-solid fa-warehouse"></i>
-                  <p>Ver proveedores</p>
+                <a href="{% url 'allVendor' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Listar Proveedores</p>
                 </a>
               </li>
             </ul>
           </li>
+          <!-- Fin Proveedores -->
 
-
-          {% comment %} HTML DE REFERENCIA para sidebar {% endcomment %}
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-envelope"></i>
               <p>
-                Mailbox
+                Mensajes
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview" style="display: none;">
+            <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../mailbox/mailbox.html" class="nav-link">
+                <a href="{% url 'inbox' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Inbox</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../mailbox/compose.html" class="nav-link">
+                <a href="{% url 'send_message' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Compose</p>
+                  <p>Redactar</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../mailbox/read-mail.html" class="nav-link">
+                <a href="{% url 'sent_messages' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Read</p>
+                  <p>Enviados</p>
                 </a>
               </li>
             </ul>
           </li>
-
-
-
-
-      </div><!-- /.container-fluid -->
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <!-- Default box -->
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Title</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                Start creating your amazing application!
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer">
-                Footer
-              </div>
-              <!-- /.card-footer-->
-            </div>
-            <!-- /.card -->
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- /.content -->
-  </div>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
