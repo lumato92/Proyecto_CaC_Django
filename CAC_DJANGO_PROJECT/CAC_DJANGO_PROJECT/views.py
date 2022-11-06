@@ -42,3 +42,9 @@ def home(request):
         return render(request, 'home.html', context)
     else:
         return redirect('loginUser')
+    
+
+# PAGE 404 ERROR 
+
+def page_not_found_view(request, exception):
+    return render(request, '404.html', status=404)
