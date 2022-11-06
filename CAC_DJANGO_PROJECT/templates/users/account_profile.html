@@ -1,5 +1,8 @@
 {% extends "base2.html" %}
 {% block title %} Perfil {% endblock title%}
 {% block content %}
-Perfil del usuario
+
+<h1 class="h1">Perfil de Usuario</h1>
+
+<a href= {% url 'password_change' %} class="btn btn-dark">Cambiar Contraseña</a>
 {% endblock %}
