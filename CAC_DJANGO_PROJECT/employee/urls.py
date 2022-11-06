@@ -11,6 +11,7 @@ urlpatterns = [
     path('delete/<int:id>', views.deleteEmployee, name='deleteEmployee'),
     path('inbox/', views.MessageListView.as_view(), name='inbox'),
     path('send-message/', views.send_message, name='send_message'),
+    path('sent-messages/', views.SentMessagesListView.as_view(), name='sent_messages'),
     # -----URL Managements/Departmens--------#
     path('departments/', views.allDepartments, name='showDepartments'),
     path('departments/<int:id>', views.infoDepartment, name='infoDepartment'),

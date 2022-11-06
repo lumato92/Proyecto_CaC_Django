@@ -117,15 +117,18 @@ class MessageForm(forms.ModelForm):
 
         fields = ['receiver', 'msg_content']
 
+        labels = {'receiver': 'Destinatario', 'msg_content': 'Mensaje'}
+
         widgets = {
             'receiver': forms.Select(
                 attrs={
                     'class': "form-control mb-3"
                 }
             ),
-            'msg_content': forms.TextInput(
+            'msg_content': forms.Textarea(
                 attrs={
-                    'class': "form-control mb-3"
+                    'class': "form-control mb-3",
+                    'rows': 3
                 }
             )
         }

@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
-from employee.models import Employee
+from employee.models import Employee, Message
 from vendor.models import Supplier
 # Create your views here.
 
@@ -26,12 +26,17 @@ def home(request):
         if employee_qs:
             employee = employee_qs.first()
 
+        all_messages = Message.objects.filter(receiver=request.user)
+        unread_messages = all_messages.filter(read=False)
+        print(unread_messages)
         context = {
             'first_name': first_name,
             'last_name': last_name,
             'employees': employees,
             'suppliers': suppliers,
             'employee': employee,
+            'unread_messages': unread_messages,
+            'all_messages': all_messages.count()
         }
 
         return render(request, 'home.html', context)

@@ -26,3 +26,9 @@
     </div>
 </div>
 {% endblock content %}
+
+{% block js %}
+<script>
+    $("option[value='{{ user.id }}']").remove();
+</script>
+{% endblock js %}

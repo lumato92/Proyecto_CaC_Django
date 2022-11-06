@@ -3,15 +3,15 @@
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 <link rel="stylesheet" href={% static 'css/dashboard/dashboard.css' %}>
 
-<div class="container bootstrap snippets bootdey">
-  <div class="row">
+<div class="container bootstrap snippets bootdey mx-3">
+  <div class="row justify-content-md-center">
     <div class="col-lg-2 col-sm-6">
       <div class="circle-tile ">
         <a href="{% url 'allEmployee' %}"><div class="circle-tile-heading dark-blue"><i class="fa fa-users fa-fw fa-3x"></i></div></a>
         <div class="circle-tile-content dark-blue">
           <div class="circle-tile-description text-faded"> Empleados </div>
           <div class="circle-tile-number text-faded ">{{ employees }} </div>
-          <a class="circle-tile-footer" href="#">More Info<i class="fa fa-chevron-circle-right"></i></a>
+          <a class="circle-tile-footer" href="#">Ingresar<i class="fa fa-chevron-circle-right"></i></a>
         </div>
       </div>
     </div>
@@ -22,7 +22,7 @@
         <div class="circle-tile-content red">
           <div class="circle-tile-description text-faded"> Proveedores </div>
           <div class="circle-tile-number text-faded ">{{ suppliers }}</div>
-          <a class="circle-tile-footer" href="#">More Info<i class="fa fa-chevron-circle-right"></i></a>
+          <a class="circle-tile-footer" href="#">Ingresar<i class="fa fa-chevron-circle-right"></i></a>
         </div>
       </div>
     </div> 
@@ -33,7 +33,7 @@
         <div class="circle-tile-content yellow">
           <div class="circle-tile-description text-faded"> Emails </div>
           <div class="circle-tile-number text-faded ">10</div>
-          <a class="circle-tile-footer" href="#">More Info<i class="fa fa-chevron-circle-right"></i></a>
+          <a class="circle-tile-footer" href="#">Ingresar<i class="fa fa-chevron-circle-right"></i></a>
         </div>
       </div>
     </div> 
@@ -42,9 +42,9 @@
       <div class="circle-tile ">
         <a href="{% url 'inbox' %}"><div class="circle-tile-heading orange"><i class="fa fa-comments fa-fw fa-3x"></i></div></a>
         <div class="circle-tile-content orange">
-          <div class="circle-tile-description text-faded"> Messages </div>
-          <div class="circle-tile-number text-faded ">10</div>
-          <a class="circle-tile-footer" href="{% url 'inbox' %}">More Info<i class="fa fa-chevron-circle-right"></i></a>
+          <div class="circle-tile-description text-faded"> Mensajes</div>
+          <div class="circle-tile-number text-faded ">{{ all_messages }}</div>
+          <a class="circle-tile-footer" href="{% url 'inbox' %}">Ingresar<i class="fa fa-chevron-circle-right"></i></a>
         </div>
       </div>
     </div> 

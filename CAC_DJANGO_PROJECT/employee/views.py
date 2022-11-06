@@ -282,8 +282,30 @@ class MessageListView(ListView):
     template_name = 'employee/inbox.html'
 
     def get_queryset(self):
+        # Aprovecho a marcar todos los mensajes como leidos
         this_qs = Message.objects.filter(receiver=self.request.user)
+        this_qs.update(read=True)
         return this_qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Bandeja de Entrada'
+        return context
+
+
+class SentMessagesListView(ListView):
+    model = Message
+    context_object_name = 'message_list'
+    template_name = 'employee/inbox.html'
+
+    def get_queryset(self):
+        this_qs = Message.objects.filter(sender=self.request.user)
+        return this_qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Elementos enviados'
+        return context
 
 
 @login_required
@@ -291,7 +313,14 @@ def send_message(request):
     form = MessageForm(request.POST or None)
 
     if request.method == 'POST':
-        pass
+        new_message = form.save(commit=False)
+
+        sender = request.user
+        new_message.sender = sender
+
+        new_message.save()
+
+        return redirect('inbox')
 
     context = {
         'form': form

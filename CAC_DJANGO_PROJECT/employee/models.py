@@ -76,6 +76,7 @@ class Message(models.Model):
     receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name="receiver")
     msg_content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+    read = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return f'{self.sender} - {self.receiver} - {self.msg_content[:10]}...'
