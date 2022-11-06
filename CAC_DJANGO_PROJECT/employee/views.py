@@ -4,8 +4,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 
-from employee.forms import EmployeeForm, DepartmentForm, MessageForm, PuestoForm
-from employee.models import Employee, Department, Message, Puesto
+from employee.forms import EmployeeForm, DepartmentForm, MessageForm, PuestoForm ,WageForm
+from employee.models import Employee, Department, Message, Puesto, Wage
 from login.user import newUser
 
 
@@ -95,6 +95,37 @@ def editEmployee(request, id):
                    'employee': employee}
 
     return render(request, 'employee/addemployee.html', context)
+
+#------------Salary------------------------------
+@login_required
+def changeSalary(request,id):
+    employee = Employee.objects.get(id=id)
+    form = WageForm(request.POST or None)
+    
+    if request.method == 'POST':
+        if form.is_valid():
+            
+            # Guardo nuevo registro de cambio de salario
+        
+            instance = form.save(commit=False)
+            instance.employee = employee
+            instance.save()
+            
+            # Actualizo el nuevo salario al perfil del empleado
+            employee.salary = instance.salary
+            employee.save()
+            
+            return redirect('home')
+        else:
+            pass
+        
+        return redirect('home')
+    
+    else:
+        
+        context = {'employee' : employee,
+                   'form' : form}
+        return render(request, 'employee/changeSalary.html',context)
 
 
 # --------Destroy------------------------------

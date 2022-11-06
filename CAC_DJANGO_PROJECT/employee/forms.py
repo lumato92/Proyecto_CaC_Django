@@ -1,5 +1,5 @@
 from django import forms
-from .models import Employee, Department, Message, Puesto
+from .models import Employee, Department, Message, Puesto, Wage
 
 GENRE = (
         ('F', 'FEMENINO'),
@@ -132,3 +132,17 @@ class MessageForm(forms.ModelForm):
                 }
             )
         }
+        
+class WageForm(forms.ModelForm):
+    
+    def __init__(self, *args, **kwargs):
+        super(WageForm,self).__init__(*args,**kwargs)
+        self.fields['salary'].widget = forms.NumberInput(attrs={'class' : 'form-control'})
+        self.fields['salary'].label = 'Nuevo Salario'
+        self.fields['date'].widget = forms.DateInput(attrs={'type': 'date'})
+        self.fields['revision_date'].widget = forms.DateInput(attrs={'type': 'date'})
+        
+    class Meta:
+        model = Wage
+        fields = ['salary','date','revision_date']    
+

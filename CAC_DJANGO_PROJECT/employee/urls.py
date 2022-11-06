@@ -7,6 +7,7 @@ urlpatterns = [
     path("add/", views.addEmployee, name="addEmployee"),
     path('info/<int:id>', views.infoEmployee, name='infoEmployee'),
     path('edit/<int:id>', views.editEmployee, name='editEmployee'),
+    path('change-salary/<int:id>',views.changeSalary,name='changeSalary'),
     # path('management/', views.addManagement, name='addManagement'),
     path('delete/<int:id>', views.deleteEmployee, name='deleteEmployee'),
     path('inbox/', views.MessageListView.as_view(), name='inbox'),

@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<div class="content-wrapper">
+
+				<div class="container">
+				
+					<div class="card card-primary">
+						<div class="card-header">
+							<h3 class="card-title">Actualizar Salario</h3>
+
+						</div>
+
+
+						<form action="" method="post">
+							{% csrf_token %}
+
+							<div class="car-body">
+								<div class="row">
+									<div class="col-md-4">
+											<div class="form-group">
+													<label for="">Nombre: </label>
+													{{employee.first_name}}
+
+											
+													
+											</div>
+											
+									</div>
+		
+									<div class="col-md-4">
+											<div class="form-group">
+													<label for="">Apellido: </label>
+													{{employee.last_name}}
+													
+											</div>
+		
+									</div>
+		
+									<div class="col-md-4">
+										<div class="form-group">
+												<label for="">Legajo: </label>
+												{{employee.id}}
+												
+										</div>
+		
+								</div>
+
+								<div class="row">
+									<div class="col-md-8">
+										<div class="form-group">
+											<label for="">Salario Actual</label>
+												{{employee.salary}}
+										</div>
+									</div>
+									
+									<div class="col-md-4">
+										<div class="form-group">
+											<label for="">Nuevo Salario</label>
+												{{form.salary}}
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-8">
+										<div class="form-group">
+											<label for="">Fecha</label>
+												{{form.date}}
+										</div>
+									</div>
+									
+									<div class="col-md-4">
+										<div class="form-group">
+											<label for="">Proximo Aumento</label>
+												{{form.revision_date}}
+										</div>
+									</div>
+		
+								</div>
+
+
+							</div>
+							<button type="submit" class= 'btn btn-primary'>Actualizar</button>
+						</form>
+					</div>
+			
+
+				</div>
+	</div>
+
+{% endblock content %}

@@ -80,3 +80,11 @@ class Message(models.Model):
 
     def __str__(self) -> str:
         return f'{self.sender} - {self.receiver} - {self.msg_content[:10]}...'
+
+class Wage(models.Model):
+    
+    employee = models.ForeignKey(Employee, on_delete = models.CASCADE, related_name='employee_sal')
+    salary = models.FloatField()
+    date = models.DateField()
+    revision_date = models.DateField(blank = True, null = True)
+    
