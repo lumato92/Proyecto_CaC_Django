@@ -4,8 +4,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 
-from employee.forms import EmployeeForm, DepartmentForm, MessageForm, PuestoForm ,WageForm
-from employee.models import Employee, Department, Message, Puesto, Wage
+from employee.forms import EmployeeForm, DepartmentForm, MessageForm, PuestoForm ,WageForm, OverTimeForm
+from employee.models import Employee, Department, Message, Puesto, Wage ,OverTime
 from login.user import newUser
 
 
@@ -136,9 +136,35 @@ def changeSalary(request,id):
 def overTime(request):
     
     
-
+    # Con el id del user busco el empleado
+    employee = Employee.objects.get(username_id = request.user.id)
     
-    return render(request, 'employee/addOvertime.html')
+    form = OverTimeForm(request.POST or None)
+    
+    if request.method == 'POST':
+        if form.is_valid():
+            
+            # Guardo nuevo registro de cambio de salario
+        
+            instance = form.save(commit=False)
+            instance.employee_id = employee
+            instance.save()
+            messages.success(request, 'Horas Extras Cargadas ')
+
+            
+            return redirect('allEmployee')
+        else:
+            
+            messages.error(request, "ERROR")
+            return redirect('allEmployee')
+        
+    
+    else:
+        context = {
+            'employee': employee,
+            'form' : form
+        }
+        return render(request, 'employee/addOvertime.html', context)
 
 
 # --------Destroy------------------------------

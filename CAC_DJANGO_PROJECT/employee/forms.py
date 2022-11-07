@@ -135,18 +135,14 @@ class WageForm(forms.ModelForm):
 
 
 class OverTimeForm(forms.ModelForm):
-    
+    def __init__(self, *args, **kwargs):
+        super(OverTimeForm, self).__init__(*args, **kwargs)  
+        self.fields['date'].widget = forms.DateInput(attrs={'type': 'date'})
+        self.fields['amount'].widget=forms.NumberInput(attrs={'step': 0.5})
     
     
     class Meta:
         model = OverTime
         fields = ['date','amount']
         labels = {'date' : 'Fecha', 'amount' : 'Cantidad' }
-        
-        widget = {
-            'date' : forms.DateInput(
-                attrs={
-                    'type' : 'date',
-                    }
-            )
-        }
+    

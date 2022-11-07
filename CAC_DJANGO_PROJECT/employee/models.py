@@ -50,7 +50,7 @@ class Employee(models.Model):
     manager = models.ForeignKey('self', on_delete=models.DO_NOTHING, blank=True, null=True)
     salary = models.FloatField(null=True)
     is_active = models.BooleanField(default=True)
-    username = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
+    username = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True, related_name = 'empleado')
     avatar = models.ImageField(default='img/no-image.png', upload_to='profile_images')
 
     class Meta:
