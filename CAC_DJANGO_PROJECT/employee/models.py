@@ -40,7 +40,7 @@ class Employee(models.Model):
     genre = models.CharField(max_length=20, choices=GENRE, default='FEMENINO')
     id_number = models.IntegerField(null=False)
     tax_id_number = models.IntegerField(null=False)
-    address = models.CharField(max_length=30)
+    address = models.CharField(max_length=100)
     nationality = models.CharField(max_length=30, default="Argentina")
     email = models.EmailField()
     phone = models.IntegerField()

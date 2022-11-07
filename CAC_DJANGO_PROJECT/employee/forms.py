@@ -31,6 +31,7 @@ class EmployeeForm(forms.ModelForm):
         self.fields['manager'] = forms.ModelChoiceField(queryset=Employee.objects.all(),
                                                         widget=forms.Select(attrs={'class': 'form-control'}))
         self.fields['salary'].widget = forms.NumberInput(attrs={'class': 'form-control'})
+        self.fields['avatar'].required = False
 
     class Meta:
         model = Employee
@@ -93,20 +94,6 @@ class PuestoForm(forms.ModelForm):
             'description': 'Description',
             'base_salary': 'base_salary',
         }
-
-
-class exMessageForm(forms.ModelForm):
-
-    def __init__(self, *args, **kwargs):
-        super(MessageForm, self).__init__(*args, **kwargs)
-        self.fields['receiver'].widget = forms.Select(attrs={'class': 'form-select mb-3'})
-        self.fields['receiver'].label = 'Destinatario'
-        self.fields['msg_content'].widget = forms.TextInput(attrs={'class': 'form-control'})
-        self.fields['msg_content'].label = 'Mensaje'
-
-    class Meta:
-        model = Message
-        fields = ('receiver', 'msg_content')
 
 
 class MessageForm(forms.ModelForm):
