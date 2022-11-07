@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">          
+                <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Cargar Horas Extras</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <h2 class="h2">Empleado</h2>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">Nombre</label>
+                                    <p>{{employee.first_name}}</p>
+                                </div>            
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">Apellido</label>
+
+                                    <p>{{employee.last_name}}</p>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">Legajo</label>
+
+                                    <p>{{employee.id}}</p>
+                                </div>
+                            </div>
+                        </div>		<div class="container">
+			<div class="row">
+				<div class="col-12">          
+					<div class="card card-primary">
+					<div class="card-header">
+						<h3 class="card-title">Modificar Salario</h3>
+					</div>
+					<!-- /.card-header -->
+					<!-- form start -->
+					<form method="POST">
+						{% csrf_token %}
+						<div class="card-body">
+							<h2 class="h2">Empleado</h2>
+							<div class="row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="">Nombre</label>
+										<p>{{employee.first_name}}</p>
+									</div>            
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="">Apellido</label>
+
+										<p>{{employee.last_name}}</p>
+									</div>
+								</div>
+								
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="">Legajo</label>
+
+										<p>{{employee.id}}</p>
+									</div>
+								</div>
+							</div>
+</div>
+
+
+{% endblock content %}

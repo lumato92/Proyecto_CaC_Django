@@ -1,5 +1,5 @@
 from django import forms
-from .models import Employee, Department, Message, Puesto, Wage
+from .models import Employee, Department, Message, Puesto, Wage, OverTime
 
 GENRE = (
         ('F', 'FEMENINO'),
@@ -146,3 +146,20 @@ class WageForm(forms.ModelForm):
         model = Wage
         fields = ['salary','date','revision_date']    
 
+
+class OverTimeForm(forms.ModelForm):
+    
+    
+    
+    class Meta:
+        model = OverTime
+        fields = ['date','amount']
+        labels = {'date' : 'Fecha', 'amount' : 'Cantidad' }
+        
+        widget = {
+            'date' : forms.DateInput(
+                attrs={
+                    'type' : 'date',
+                    }
+            )
+        }

@@ -114,18 +114,31 @@ def changeSalary(request,id):
             # Actualizo el nuevo salario al perfil del empleado
             employee.salary = instance.salary
             employee.save()
+            messages.success(request, 'Salario Actualizado ')
+
             
-            return redirect('home')
+            return redirect('allEmployee')
         else:
-            pass
-        
-        return redirect('home')
+            
+            messages.error(request, "ERROR")
+            return redirect('allEmployee')
     
     else:
         
         context = {'employee' : employee,
                    'form' : form}
         return render(request, 'employee/changeSalary.html',context)
+    
+    
+# ---------------Horas Extras -----------------------
+
+@login_required
+def overTime(request):
+    
+    
+
+    
+    return render(request, 'employee/addOvertime.html')
 
 
 # --------Destroy------------------------------

@@ -88,3 +88,15 @@ class Wage(models.Model):
     date = models.DateField()
     revision_date = models.DateField(blank = True, null = True)
     
+    class Meta:
+        verbose_name:'Salario'
+    
+    
+class OverTime(models.Model):
+    
+    employee_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    date = models.DateField()
+    amount = models.FloatField()
+    
+    class Meta:
+        verbose_name = 'Horas Extras'
