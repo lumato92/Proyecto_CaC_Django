@@ -1,15 +1,12 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.views.generic import ListView
 
-
-from employee.models import Employee, Department, Puesto
-
-from .forms import EmployeeForm, DepartmentForm, PuestoForm
-
+from employee.forms import EmployeeForm, DepartmentForm, MessageForm, PuestoForm
+from employee.models import Employee, Department, Message, Puesto
 from login.user import newUser
-# Create your views here.
 
 
 def index(request):
@@ -276,3 +273,57 @@ def deletePuesto(request, id):
     return redirect('showPuestos')
 
 # ---------Departments END---------------------------------------------------
+
+
+# -------- Messages ------------------------------
+class MessageListView(ListView):
+    model = Message
+    context_object_name = 'message_list'
+    template_name = 'employee/inbox.html'
+
+    def get_queryset(self):
+        # Aprovecho a marcar todos los mensajes como leidos
+        this_qs = Message.objects.filter(receiver=self.request.user)
+        this_qs.update(read=True)
+        return this_qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Bandeja de Entrada'
+        return context
+
+
+class SentMessagesListView(ListView):
+    model = Message
+    context_object_name = 'message_list'
+    template_name = 'employee/inbox.html'
+
+    def get_queryset(self):
+        this_qs = Message.objects.filter(sender=self.request.user)
+        return this_qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Elementos enviados'
+        return context
+
+
+@login_required
+def send_message(request):
+    form = MessageForm(request.POST or None)
+
+    if request.method == 'POST':
+        new_message = form.save(commit=False)
+
+        sender = request.user
+        new_message.sender = sender
+
+        new_message.save()
+
+        return redirect('inbox')
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'employee/send-message.html', context)

@@ -40,7 +40,7 @@ class Employee(models.Model):
     genre = models.CharField(max_length=20, choices=GENRE, default='FEMENINO')
     id_number = models.IntegerField(null=False)
     tax_id_number = models.IntegerField(null=False)
-    address = models.CharField(max_length=30)
+    address = models.CharField(max_length=100)
     nationality = models.CharField(max_length=30, default="Argentina")
     email = models.EmailField()
     phone = models.IntegerField()
@@ -50,7 +50,7 @@ class Employee(models.Model):
     manager = models.ForeignKey('self', on_delete=models.DO_NOTHING, blank=True, null=True)
     salary = models.FloatField(null=True)
     is_active = models.BooleanField(default=True)
-    username = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    username = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     # username = models.OneToOneField(User, on_delete=models.CASCADE, blank=True , null= True)
     avatar = models.ImageField(default='img/no-image.png', upload_to='profile_images')
 
@@ -71,6 +71,18 @@ class Employee(models.Model):
             img.thumbnail(new_img)
             img.save(self.avatar.path)
             
+
+
+class Message(models.Model):
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="sender")
+    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name="receiver")
+    msg_content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    read = models.BooleanField(default=False)
+
+    def __str__(self) -> str:
+        return f'{self.sender} - {self.receiver} - {self.msg_content[:10]}...'
+
 
 # Horas Extras
 

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Employee, Department, OverTime, Puesto
+from .models import Employee, Department, OverTime, Message, Puesto
 
 GENRE = (
         ('F', 'FEMENINO'),
@@ -9,7 +9,7 @@ GENRE = (
 
 class EmployeeForm(forms.ModelForm):
     avatar = forms.ImageField()
-    
+
     def __init__(self, *args, **kwargs):
         super(EmployeeForm, self).__init__(*args, **kwargs)
         self.fields['first_name'].widget = forms.TextInput(attrs={'class': 'form-control'})
@@ -31,6 +31,7 @@ class EmployeeForm(forms.ModelForm):
         self.fields['manager'] = forms.ModelChoiceField(queryset=Employee.objects.all(),
                                                         widget=forms.Select(attrs={'class': 'form-control'}))
         self.fields['salary'].widget = forms.NumberInput(attrs={'class': 'form-control'})
+        self.fields['avatar'].required = False
 
     class Meta:
         model = Employee
@@ -105,4 +106,29 @@ class OverTimeForm(forms.ModelForm):
             model = OverTime
             fields = ('employee_id', 'date', 'amount')
             
+
             labe
+
+class MessageForm(forms.ModelForm):
+    receiver = forms.Select()
+
+    class Meta:
+        model = Message
+
+        fields = ['receiver', 'msg_content']
+
+        labels = {'receiver': 'Destinatario', 'msg_content': 'Mensaje'}
+
+        widgets = {
+            'receiver': forms.Select(
+                attrs={
+                    'class': "form-control mb-3"
+                }
+            ),
+            'msg_content': forms.Textarea(
+                attrs={
+                    'class': "form-control mb-3",
+                    'rows': 3
+                }
+            )
+        }

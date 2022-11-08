@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.shortcuts import render, redirect
 
+from vendor.forms import SupplierForm
 from vendor.models import Supplier
-from .forms import SupplierForm
 
 
 def addVendor(request):

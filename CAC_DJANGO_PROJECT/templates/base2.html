@@ -10,10 +10,10 @@
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href={% static 'lib/adminlte3.2.0/plugins/fontawesome-free/css/all.min.css' %}>
+    <link rel="stylesheet" href={% static 'lib/fontawesome-free/css/all.min.css' %}>
     <script src="https://kit.fontawesome.com/e63f160475.js" crossorigin="anonymous"></script>
     <!-- overlayScrollbars -->
-    <link rel="stylesheet" href={% static "lib/adminlte3.2.0/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" %}>
+    <link rel="stylesheet" href={% static "lib/overlayScrollbars/css/OverlayScrollbars.min.css" %}>
     <!-- Theme style -->
     <link rel="stylesheet" href={% static 'lib/adminlte3.2.0/css/adminlte.min.css' %}>
 
@@ -47,11 +47,13 @@
     </div>
     
 <!-- jQuery -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{% static "lib/jquery/jquery.min.js" %}"></script>
 <!-- Bootstrap 4 -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-
+<script src="{% static "lib/bootstrap/js/bootstrap.min.js" %}"></script>
+<!-- overlayScrollbars -->
+<script src="{% static "lib/overlayScrollbars/js/OverlayScrollbars.min.js" %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'lib/adminlte3.2.0/js/adminlte.min.js' %}"></script>
 {% block js %}
 {% endblock js %}
 
