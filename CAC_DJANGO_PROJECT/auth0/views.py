@@ -1,6 +1,7 @@
 from django.shortcuts import  redirect, render
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate, logout
+from django.contrib import messages
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import User
@@ -21,8 +22,8 @@ def loginUser(request):
             # return HttpResponse (f"Login valido {username}")
             
         else:
-             
-            return HttpResponse("Login Invalido")
+            messages.error(request, 'Contraseña o Usuario Invalido')
+            redirect ('loginUser')
             
             # Return an 'invalid login' error message.
             

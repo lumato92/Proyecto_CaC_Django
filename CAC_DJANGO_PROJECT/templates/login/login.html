@@ -19,6 +19,15 @@
                 class="img-fluid" alt="Phone image">
             </div>
             <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+              {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-dismissible alert-danger">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong class="text-dark">{{ message }}</strong>
+              </div>
+              {% endfor %}
+              {% endif %}
+
               <form method = 'POST'>
                 
                 {% csrf_token %}
