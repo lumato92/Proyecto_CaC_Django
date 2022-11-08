@@ -69,6 +69,7 @@ class Employee(models.Model):
             new_img = (200, 200)
             img.thumbnail(new_img)
             img.save(self.avatar.path)
+            
 
 
 class Message(models.Model):

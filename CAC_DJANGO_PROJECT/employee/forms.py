@@ -1,5 +1,5 @@
 from django import forms
-from .models import Employee, Department, Message, Puesto, Wage, OverTime
+from .models import Employee, Department, OverTime, Message, Puesto, Wage, OverTime
 
 GENRE = (
         ('F', 'FEMENINO'),
@@ -97,6 +97,19 @@ class PuestoForm(forms.ModelForm):
             'base_salary': 'base_salary',
         }
 
+class OverTimeForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(OverTimeForm, self).__init__(*args, **kwargs)
+        self.fields['employee_id'].widget = forms.NumberInput(attrs={'class':'form-control'})
+        self.fields['date'].widget = forms.DateInput(attrs={'type': 'date', 'class': 'form-control'})
+        self.fields['amount'].widget = forms.NumberInput(attrs={'class':'form-control','min': '0', 'max':'8', 'step':'0.5'})
+
+        class Meta:
+            model = OverTime
+            fields = ('employee_id', 'date', 'amount')
+            
+
+            labe
 
 class MessageForm(forms.ModelForm):
     receiver = forms.Select()
