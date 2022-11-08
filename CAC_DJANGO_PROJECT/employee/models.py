@@ -94,7 +94,7 @@ class Wage(models.Model):
     
 class OverTime(models.Model):
     
-    employee_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    employee_id = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name = 'employee_ot')
     date = models.DateField()
     amount = models.FloatField()
     

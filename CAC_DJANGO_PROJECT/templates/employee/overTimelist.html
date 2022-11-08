@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Legajo</th>
+                        <th scope="col">Nombre Completo</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Cantidad</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for elements in overtimeList %}
+
+                    <tr>
+                        <th scope="row">{{employee.id}}</th>
+                        <td>{{employee.first_name}} {{employee.last_name}}</td>
+                        <td>{{element.date}}</td>
+                        <td>{{element.amount}}</td>
+                    </tr>
+                    
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

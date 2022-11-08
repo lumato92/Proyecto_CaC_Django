@@ -141,6 +141,9 @@ def overTime(request):
     
     form = OverTimeForm(request.POST or None)
     
+    overtimeList = OverTime.objects.filter(employee_id_id = employee)
+    print(overtimeList)
+    
     if request.method == 'POST':
         if form.is_valid():
             
@@ -162,7 +165,8 @@ def overTime(request):
     else:
         context = {
             'employee': employee,
-            'form' : form
+            'form' : form,
+            'overtimeList': overtimeList
         }
         return render(request, 'employee/addOvertime.html', context)
 
