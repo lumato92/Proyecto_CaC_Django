@@ -137,20 +137,10 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{% url 'addVendor' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ingresar Proveedor</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% url 'allVendor' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Listar Proveedores</p>
-                </a>
-              </li>
-            </ul>
+            <div class="dropdown-menu">
+              <a href={% url 'addVendor' %} class="dropdown-item"><i class="nav-icon fa-solid fa-person-circle-plus"></i> Ingresar proveedor</a>
+              <a href={% url 'addVendor' %} class="dropdown-item "><i class="nav-icon fa-solid fa-warehouse"></i> Ver proveedores</a>
+            </div>
           </li>
           <!-- Fin Proveedores -->
 

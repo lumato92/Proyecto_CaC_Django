@@ -3,6 +3,14 @@
 {% block content %}
 
 <div class="content-wrapper" >
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="text-dark">{{ message }}</strong>
+        </div>
+        {% endfor %}
+    {% endif %}
 
     <div class="container">
 
@@ -51,14 +59,13 @@
                                     {{form.vat_condition}}
                                 </div>
                             </div>
-                            
                             <div class="col-md-6">
-
                                 <div class="form-group">
                                     <label for="" >Categoria</label>
                                     {{form.category}}
                                 </div>
                             </div>
+                            
                         </div>
 
 
