@@ -51,6 +51,7 @@ class Employee(models.Model):
     salary = models.FloatField(null=True)
     is_active = models.BooleanField(default=True)
     username = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
+    # username = models.OneToOneField(User, on_delete=models.CASCADE, blank=True , null= True)
     avatar = models.ImageField(default='img/no-image.png', upload_to='profile_images')
 
     class Meta:
@@ -69,6 +70,7 @@ class Employee(models.Model):
             new_img = (200, 200)
             img.thumbnail(new_img)
             img.save(self.avatar.path)
+            
 
 
 class Message(models.Model):
@@ -80,3 +82,17 @@ class Message(models.Model):
 
     def __str__(self) -> str:
         return f'{self.sender} - {self.receiver} - {self.msg_content[:10]}...'
+
+
+# Horas Extras
+
+class OverTime(models.Model):
+    
+    employee_id = models.ForeignKey(Employee, on_delete = models.DO_NOTHING ,blank = False, null = False)
+    date = models.DateField()
+    amount = models.FloatField()
+    percent = models.BooleanField()
+    
+    class Meta:
+        
+        verbose_name = 'Horas Extra'

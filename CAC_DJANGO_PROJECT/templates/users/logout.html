@@ -1,17 +1,39 @@
-{% extends "base2.html" %}
-{% block title %}Cerrar Sesión{% endblock title %}
-{% block content %}
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href={% static 'lib/adminlte3.2.0/plugins/fontawesome-free/css/all.min.css' %}>
+    <script src="https://kit.fontawesome.com/e63f160475.js" crossorigin="anonymous"></script>
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href={% static "lib/adminlte3.2.0/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" %}>
+    <!-- Theme style -->
+    <link rel="stylesheet" href={% static 'lib/adminlte3.2.0/css/adminlte.min.css' %}>
+    <title>Logged out</title>
+</head>
+<body style=" width: 100vw ; height: 100vh">
+    <div class="card" style=" display:flex">
+        <div class="card-body" style= "margin:auto">
         <h5 class="card-title">Has sido deslogueado</h5>
         <p class="card-text">
             Gracias por tu tiempo, contáctame por comentarios y sugerencias.
         </p>
         <br><hr><a href="{% url 'loginUser' %}" class="btn btn-primary">Iniciar sesión otra vez</a>
-        </div>
     </div>
+    </div>
+    
 
+<!-- jQuery -->
 
-{% endblock content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- Bootstrap 4 -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 
-
+</body>
+</html>

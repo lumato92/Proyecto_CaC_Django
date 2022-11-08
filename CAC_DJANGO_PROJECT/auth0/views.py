@@ -1,9 +1,12 @@
 from django.shortcuts import  redirect, render
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate, logout
+from django.contrib import messages
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.models import User
 from django.urls import reverse_lazy
+from employee.models import Employee
 # Create your views here.
 def loginUser(request):
 
@@ -19,8 +22,8 @@ def loginUser(request):
             # return HttpResponse (f"Login valido {username}")
             
         else:
-             
-            return HttpResponse("Login Invalido")
+            messages.error(request, 'Contraseña o Usuario Invalido')
+            redirect ('loginUser')
             
             # Return an 'invalid login' error message.
             
@@ -33,6 +36,11 @@ def logoutUser(request):
     return render(request, 'users/logout.html')
 
 
-def userProfile(request):
-    
-    return render(request, 'users/account_profile.html')
+def userProfile(request, username):
+    user = User.objects.get(username=username)
+    employee = Employee.objects.get(username =user.id)
+    print(employee)
+    context = {'user' : user,
+                'employee' :employee
+            }
+    return render(request, 'users/account_profile.html', context)
