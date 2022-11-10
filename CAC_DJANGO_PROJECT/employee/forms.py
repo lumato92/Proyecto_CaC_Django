@@ -28,7 +28,7 @@ class EmployeeForm(forms.ModelForm):
         self.fields['is_active'].widget = forms.CheckboxInput(attrs={'class': 'form-check-input  justify-content-center'})
         self.fields['management'] = forms.ModelChoiceField(queryset=Department.objects.all(),
                                                            widget=forms.Select(attrs={'class': 'form-control'}))
-        self.fields['manager'] = forms.ModelChoiceField(queryset=Employee.objects.all(),
+        self.fields['manager'] = forms.ModelChoiceField(queryset=Employee.objects.all(),required=False,
                                                         widget=forms.Select(attrs={'class': 'form-control'}))
         self.fields['salary'].widget = forms.NumberInput(attrs={'class': 'form-control'})
         self.fields['avatar'].required = False
