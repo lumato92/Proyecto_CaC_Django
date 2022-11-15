@@ -1,5 +1,5 @@
 from django import forms
-from .models import Employee, Department, OverTime, Message, Puesto
+from .models import Employee, Department, OverTime, Message, Puesto, Wage, OverTime
 
 GENRE = (
         ('F', 'FEMENINO'),
@@ -28,7 +28,12 @@ class EmployeeForm(forms.ModelForm):
         self.fields['is_active'].widget = forms.CheckboxInput(attrs={'class': 'form-check-input  justify-content-center'})
         self.fields['management'] = forms.ModelChoiceField(queryset=Department.objects.all(),
                                                            widget=forms.Select(attrs={'class': 'form-control'}))
-        self.fields['manager'] = forms.ModelChoiceField(queryset=Employee.objects.all(),required=False,
+
+        
+        # Se coloca position 2 por que es la id de supervisor en la tabla puestos
+
+        self.fields['manager'] = forms.ModelChoiceField(queryset=Employee.objects.all().filter(position = '2'),required=False,
+
                                                         widget=forms.Select(attrs={'class': 'form-control'}))
         self.fields['salary'].widget = forms.NumberInput(attrs={'class': 'form-control'})
         self.fields['avatar'].required = False
@@ -132,3 +137,30 @@ class MessageForm(forms.ModelForm):
                 }
             )
         }
+        
+class WageForm(forms.ModelForm):
+    
+    def __init__(self, *args, **kwargs):
+        super(WageForm,self).__init__(*args,**kwargs)
+        self.fields['salary'].widget = forms.NumberInput(attrs={'class' : 'form-control'})
+        self.fields['salary'].label = 'Nuevo Salario'
+        self.fields['date'].widget = forms.DateInput(attrs={'type': 'date'})
+        self.fields['revision_date'].widget = forms.DateInput(attrs={'type': 'date'})
+        
+    class Meta:
+        model = Wage
+        fields = ['salary','date','revision_date']    
+
+
+class OverTimeForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(OverTimeForm, self).__init__(*args, **kwargs)  
+        self.fields['date'].widget = forms.DateInput(attrs={'type': 'date'})
+        self.fields['amount'].widget=forms.NumberInput(attrs={'step': 0.5})
+    
+    
+    class Meta:
+        model = OverTime
+        fields = ['date','amount']
+        labels = {'date' : 'Fecha', 'amount' : 'Cantidad' }
+    

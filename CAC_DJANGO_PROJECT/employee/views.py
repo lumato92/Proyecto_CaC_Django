@@ -4,8 +4,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 
-from employee.forms import EmployeeForm, DepartmentForm, MessageForm, PuestoForm
-from employee.models import Employee, Department, Message, Puesto
+from employee.forms import EmployeeForm, DepartmentForm, MessageForm, PuestoForm ,WageForm, OverTimeForm
+from employee.models import Employee, Department, Message, Puesto, Wage ,OverTime
 from login.user import newUser
 
 
@@ -95,6 +95,81 @@ def editEmployee(request, id):
                    'employee': employee}
 
     return render(request, 'employee/addemployee.html', context)
+
+#------------Salary------------------------------
+@login_required
+def changeSalary(request,id):
+    employee = Employee.objects.get(id=id)
+    form = WageForm(request.POST or None)
+    
+    if request.method == 'POST':
+        if form.is_valid():
+            
+            # Guardo nuevo registro de cambio de salario
+        
+            instance = form.save(commit=False)
+            instance.employee = employee
+            instance.save()
+            
+            # Actualizo el nuevo salario al perfil del empleado
+            employee.salary = instance.salary
+            employee.save()
+            messages.success(request, 'Salario Actualizado ')
+
+            
+            return redirect('allEmployee')
+        else:
+            
+            messages.error(request, "ERROR")
+            return redirect('allEmployee')
+    
+    else:
+        
+        context = {'employee' : employee,
+                   'form' : form}
+        return render(request, 'employee/changeSalary.html',context)
+    
+    
+# ---------------Horas Extras -----------------------
+
+@login_required
+def overTime(request):
+    
+    
+    # Con el id del user busco el empleado
+    print(request.user.id)
+    employee = Employee.objects.get(pk = request.user.id)
+    
+    form = OverTimeForm(request.POST or None)
+    
+    overtimeList = OverTime.objects.filter(employee_id_id = employee)
+    print(overtimeList)
+    
+    if request.method == 'POST':
+        if form.is_valid():
+            
+            # Guardo nuevo registro de cambio de salario
+        
+            instance = form.save(commit=False)
+            instance.employee_id = employee
+            instance.save()
+            messages.success(request, 'Horas Extras Cargadas ')
+
+            
+            return redirect('allEmployee')
+        else:
+            
+            messages.error(request, "ERROR")
+            return redirect('allEmployee')
+        
+    
+    else:
+        context = {
+            'employee': employee,
+            'form' : form,
+            'overtimeList': overtimeList
+        }
+        return render(request, 'employee/addOvertime.html', context)
 
 
 # --------Destroy------------------------------

@@ -24,8 +24,12 @@ def newUser(name, lastname, email, position):
         obj = Employee.objects.latest('id')
         obj.username = user
         obj.save()
-
-        if position != 'Supervisor':
+        
+        print(position)
+        
+        
+        # Verifico si la posicion no es supervisor le asigno el grupo Employee
+        if obj.position != 'Supervisor':
 
             addEmployeeGroup(user)
     except Exception:
