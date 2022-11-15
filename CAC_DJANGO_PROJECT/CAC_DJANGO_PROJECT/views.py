@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
-from employee.models import Employee, Message
+from employee.models import Department, Employee, Message
 from vendor.models import Supplier
 # Create your views here.
 
@@ -20,6 +20,7 @@ def home(request):
         last_name = request.user.last_name
         employees = Employee.objects.count()
         suppliers = Supplier.objects.count()
+        departments = Department.objects.count()
         employee = {}
 
         employee_qs = Employee.objects.filter(username=request.user)
@@ -35,6 +36,7 @@ def home(request):
             'employees': employees,
             'suppliers': suppliers,
             'employee': employee,
+            'departments': departments,
             'unread_messages': unread_messages,
             'all_messages': all_messages.count()
         }
@@ -42,9 +44,9 @@ def home(request):
         return render(request, 'home.html', context)
     else:
         return redirect('loginUser')
-    
 
-# PAGE 404 ERROR 
+
+# PAGE 404 ERROR
 
 def page_not_found_view(request, exception):
     return render(request, '404.html', status=404)
