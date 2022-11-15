@@ -137,7 +137,8 @@ def overTime(request):
     
     
     # Con el id del user busco el empleado
-    employee = Employee.objects.get(username_id = request.user.id)
+    print(request.user.id)
+    employee = Employee.objects.get(pk = request.user.id)
     
     form = OverTimeForm(request.POST or None)
     
