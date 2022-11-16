@@ -35,7 +35,7 @@ Crear usuario y base de datos por terminal
 
 
 sudo -u postgres psql\
-**postgres=#** CREATE DATABASE myproject;\
+**postgres=#** CREATE DATABASE nombre_bd ;\
 **postgres=#** CREATE USER nombre_bd WITH my_user 'my_password';\
 **postgres=#** ALTER ROLE my_user SET client_encoding TO 'utf8';\
 **postgres=#** ALTER ROLE my_user SET default_transaction_isolation TO 'read committed';\
