@@ -64,14 +64,14 @@ MY_DATABASES = {
 Creación Base de Datos MySQL
 ```
 mysql -u root -p
-CREATE DATABASE siradig CHARACTER SET utf8;
+CREATE DATABASE nombre_bd CHARACTER SET utf8;
 ```
 En archivo my_db.cnf cambiar usuario y contraseña del usuario de MySQL con privilegios
 Ejemplo de archivo my_db.cnf:
 
 ```ini
 [client]
-database = nombre_db
+database = nombre_bd
 user = my_user
 password = my_pasword
 HOST = localhost
