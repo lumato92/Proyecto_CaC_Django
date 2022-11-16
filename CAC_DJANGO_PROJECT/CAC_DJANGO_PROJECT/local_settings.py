@@ -1,10 +1,10 @@
 
-MY_DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pulenta_app',
-        'USER': 'artime',
-        'PASSWORD': 'artime80',
+        'NAME': 'nombre_db',
+        'USER': 'my_user',
+        'PASSWORD': 'my_password',
         'HOST': 'localhost',
         'PORT': '',
     }

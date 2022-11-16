@@ -13,8 +13,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 
 try:
-    from CAC_DJANGO_PROJECT.local_settings import MY_DATABASES
+    from CAC_DJANGO_PROJECT.local_settings import DATABASES
 except ImportError:
+    DATABASES = {}
     print('local_settings no encontrado')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -84,9 +85,7 @@ WSGI_APPLICATION = 'CAC_DJANGO_PROJECT.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-if MY_DATABASES:
-    DATABASES = MY_DATABASES
-else:
+if not DATABASES:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
