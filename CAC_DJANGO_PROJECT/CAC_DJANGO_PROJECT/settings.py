@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 
 try:
-    from CAC_DJANGO_PROJECT.local_settings import DATABASES
+    from CAC_DJANGO_PROJECT.local_settings import DATABASES1
 except ImportError:
     DATABASES = {}
     print('local_settings no encontrado')

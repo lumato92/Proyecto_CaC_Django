@@ -16,43 +16,60 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">Legajo</th>
-                                <th scope="col">Nombre Completo</th>
-                                <th scope="col">Puesto</th>
-                                <th scope="col">Manager</th>
-                                <th scope="col">Departamento</th>
-                                <th scope="col">Salario</th>
-                                <th scope="col">Acciones</th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
 
-                            {% for employee in employees %}
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Empleados</h3>
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="card-body table-responsive p-0" style="height: 300px;">
+                        <table class="table table-head-fixed text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Legajo</th>
+                                    <th>Nombre Completo</th>
+                                    <th>Puesto</th>
+                                    <th>Manager</th>
+                                    <th>Departamento</th>
+                                    <th>Salario</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    {% for employee in employees %}
+                                    <tr>
+                                        <th scope="row">{{employee.id}}</th>
+                                        <td>{{employee.first_name}} {{employee.last_name}}</td>
+                                        <td>{{employee.position}}</td>
+                                        <td>{{employee.manager}}</td>
+                                        <td>{{employee.management}}</td>
+                                        <td>${{employee.salary|floatformat:2}}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary" onclick="location.href='{% url 'infoEmployee' id=employee.id %}'"><i class="far fa-eye"></i></button>
+                                            <button type="button" class="btn btn-success" onclick="location.href='{% url 'editEmployee' id=employee.id %}'"><i class="fas fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger" onclick="location.href='{% url 'deleteEmployee' id=employee.id %}'"><i class="far fa-trash-alt"></i></button>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
 
-                            <tr>
-                                <th scope="row">{{employee.id}}</th>
-                                <td>{{employee.first_name}} {{employee.last_name}}</td>
-                                <td>{{employee.position}}</td>
-                                <td>{{employee.manager}}</td>
-                                <td>{{employee.management}}</td>
-                                <td>${{employee.salary|floatformat:2}}</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" onclick="location.href='{% url 'infoEmployee' id=employee.id %}'"><i class="far fa-eye"></i></button>
-                                    <button type="button" class="btn btn-success" onclick="location.href='{% url 'editEmployee' id=employee.id %}'"><i class="fas fa-edit"></i></button>
-                                    <button type="button" class="btn btn-danger" onclick="location.href='{% url 'deleteEmployee' id=employee.id %}'"><i class="far fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
-                            
-                            {% endfor %}
-
-                        </tbody>
-                    </table>
+                            </tbody>
+                       </table>
+                    </div>
+                
                 </div>
+                
             </div>
 
         </div>

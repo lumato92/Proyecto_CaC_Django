@@ -4,3 +4,4 @@ env/
 profile_images/
 migrations/
 my_local_settings.py
+local_settings.py
