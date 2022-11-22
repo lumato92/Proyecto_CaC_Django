@@ -3,14 +3,24 @@
 {% block content %}
 
     <div class="content-wrapper">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="text-dark">{{ message }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
 
-        <h1 class="h1 center">Proveedores</h1>
+        <h1 class="h1 center">Todos los Departamentos</h1>
 
         <div class="container">
+            <div class="row">
+
                 <div class="col-12">
-                    <div class="card card-primary">
+                    <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Proveedores</h3>
+                            <h3 class="card-title">Empleados</h3>
                             <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
                                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -27,28 +37,24 @@
                             <table class="table table-head-fixed text-nowrap">
                                 <thead>
                                     <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Razon Social</th>
-                                        <th scope="col">CUIT</th>
-                                        <th scope="col">Categoria</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Telefono</th>
+                                        <th>Id</th>
+                                        <th>Nombre</th>
+                                        <th>Descripcion</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for vendor in vendors %}
+
+                                    {% for department in departments %}
 
                                     <tr>
-                                        <th scope="row">{{vendor.id}}</th>
-                                        <td>{{vendor.name}}</td>
-                                        <td>{{vendor.tax_id_number}}</td>
-                                        <td>{{vendor.category}}</td>
-                                        <td>{{vendor.email}}</td>
-                                        <td>{{vendor.phone}}</td>
+                                        <th scope="row">{{department.id}}</th>
+                                        <td>{{department.name}}</td>
+                                        <td>{{department.description}}</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary" onclick="location.href='{% url 'infoVendor' id=vendor.id %}'"><i class="far fa-eye"></i></button>
-                                            <button type="button" class="btn btn-success" onclick="location.href='{% url 'editVendor' id=vendor.id %}'"><i class="fas fa-edit"></i></button>
-                                        <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                                            <button type="button" class="btn btn-primary" onclick="location.href='{% url 'infoDepartment' id=department.id %}'"><i class="far fa-eye"></i></button>
+                                            <button type="button" class="btn btn-success" onclick="location.href='{% url 'editDepartment' id=department.id %}'"><i class="fas fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger" onclick="location.href='{% url 'deleteDepartment' id=department.id %}'"><i class="far fa-trash-alt"></i></button>
                                         </td>
                                     </tr>
                                     

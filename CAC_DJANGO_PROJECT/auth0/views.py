@@ -6,7 +6,7 @@ from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
-from employee.models import Employee
+from employee.models import Employee ,OverTime , Wage
 # Create your views here.
 def loginUser(request):
 
@@ -39,8 +39,10 @@ def logoutUser(request):
 def userProfile(request, username):
     user = User.objects.get(username=username)
     employee = Employee.objects.get(pk =request.user.id)
+    overtime = OverTime.objects.filter(employee_id_id = employee)
     print(employee)
     context = {'user' : user,
-                'employee' :employee
+                'employee' :employee,
+                'overtimeList':overtime
             }
     return render(request, 'users/account_profile.html', context)

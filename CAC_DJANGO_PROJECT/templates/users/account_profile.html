@@ -2,9 +2,122 @@
 {% block title %} Perfil {% endblock title%}
 {% block content %}
 
-<h1 class="h1">Perfil de Usuario</h1>
+<h1 class="h1 text-aling-center">Perfil de Usuario</h1>
 
-<h2 class="h2">{{user.username}}</h2>
 
-<a href= {% url 'password_change' %} class="btn btn-dark">Cambiar Contraseña</a>
+
+
+
+<div class="container">
+    <div class="card card-primary ">
+        <div class="card-header">
+            <h3 class="card-title">Perfil {{user.first_name}} {{user.last_name}}            Legajo: {{employee.id}}</h3>
+        </div>
+        <div class="row mt-3 ml-2">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="">Puesto: </label>
+                    <input type="text" value={{employee.position}} readonly>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="">Gerencia: </label>
+                    <input type="text" value={{employee.management}} readonly>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="">Supervisor: </label>
+                    {{employee.manager}} 
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3 ml-2">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="">Salario: </label>
+                    <input type="text" value={{employee.salary}} readonly>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="">CUIL : </label>
+                    <input type="text" value={{employee.tax_id_number}} readonly>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="">Fecha Contratacion: </label>
+                    {{employee.start_date}}
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3 ml-2">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="">Correo</label>
+                    {{employee.email}}
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="">Username</label>
+                    <input type="text" value={{user.username}} readonly>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer text-right">
+            <a href= {% url 'password_change' %} class="btn btn-dark">Cambiar Contraseña</a>
+            <a class="btn btn-success" href='{% url 'editEmployee' id=employee.id %}'>Editar Info</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Horas Extras</h3>
+
+                </div>
+                <div class="card-body table-responsive-p-0">
+                    <table class="table table-head-fixed text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Fecha</th>
+                                <th>Cantidad</th>
+                            </tr>
+
+                            <tbody>
+                                
+                                {% for elements in overtimeList %}
+
+                                <tr>
+                                    <th scope="row">{{employee.id}}</th>
+                                    <td>{{elements.date}}</td>
+                                    <td>{{elements.amount}}</td>
+                                </tr>
+                                
+                                {% endfor %}
+                            </tbody>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Salario Historico</h3>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

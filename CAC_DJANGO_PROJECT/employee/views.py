@@ -33,18 +33,12 @@ def addEmployee(request):
                 print("USER CREADO")
             else:
                 print("error")
-            # return HttpResponse("Empleado agregado")
             messages.success(request, 'Empleado agregado exitosamente!')
             return redirect('allEmployee')
         else:
             print(form.errors.as_data())
             form_errors = form.errors
             messages.error(request, form_errors)
-            # form = EmployeeForm()
-            # context = {'form':form}
-            # return render(request,'employee/add2.html',context)
-            # return HttpResponse("HUBO UN ERROR")
-            # return redirect(request.META['HTTP_REFERER'])
             return render(request, 'employee/addemployee.html', {'form': form})
     else:
         form = EmployeeForm()
@@ -177,31 +171,9 @@ def overTime(request):
 def deleteEmployee(request, id):
     employee = Employee.objects.get(id=id)
     employee.delete()
-    messages.error(request, 'Document deleted.')
+    messages.error(request, f'Empleado: {employee.id} eliminado.')
     return redirect('allEmployee')
 # --------End Employee------------------------------
-
-
-# --------Show Gerencias------------------------------
-@login_required
-def addManagement(request):
-    # return HttpResponse ("ok")
-    return render(request, "base.html")
-
-
-@login_required
-def showManagements(request):
-    # return HttpResponse ("ok")
-    managements = Department.objects.all()
-    # return HttpResponse(f"""<h1> Listado de proyectos </h1>""")
-    return render(request, 'employee/showmanagements.html', {'managements': managements})
-
-
-# --------Show Puestos------------------------------
-@login_required
-def showPuestos(request):
-    puestos = Puesto.objects.all()
-    return render(request, 'employee/showpuestos.html', {'puestos': puestos})
 
 
 # ---------Departments----------------------------------------------------
@@ -210,7 +182,7 @@ def showPuestos(request):
 def allDepartments(request):
     departments = Department.objects.all()
     context = {'departments': departments}
-    return render(request, 'department/alldepartment.html', context)
+    return render(request, 'employee/department/alldepartment.html', context)
 
 
 # --------Show------------------------------
@@ -241,7 +213,7 @@ def addDepartment(request):
         context = {'form': form,
                    'edit': edit}
 
-    return render(request, 'department/adddepartment.html', context)
+    return render(request, 'employee/department/adddepartment.html', context)
 
 
 # --------Edit------------------------------
@@ -283,7 +255,7 @@ def deleteDepartment(request, id):
 def allPuestos(request):
     puestos = Puesto.objects.all()
     context = {'puestos': puestos}
-    return render(request, 'puesto/allpuestos.html', context)
+    return render(request, 'employee/puesto/allpuestos.html', context)
 
 
 # --------Show------------------------------
@@ -291,7 +263,7 @@ def allPuestos(request):
 def infoPuesto(request, id):
     puesto = Puesto.objects.get(id=id)
     context = {'puesto': puesto}
-    return render(request, 'puesto/infopuesto.html', context)
+    return render(request, 'employee/puesto/infopuesto.html', context)
 
 
 # --------Create----------------------------------------------------------
@@ -308,13 +280,13 @@ def addPuesto(request):
             print(form.errors.as_data())
             form_errors = form.errors
             messages.error(request, form_errors)
-            return render(request, 'puesto/addpuesto.html', {'form': form})
+            return render(request, 'employee/puesto/addpuesto.html', {'form': form})
     else:
         form = PuestoForm()
         context = {'form': form,
                    'edit': edit}
 
-    return render(request, 'puesto/addpuesto.html', context)
+    return render(request, 'employee/puesto/addpuesto.html', context)
 
 
 # --------Edit------------------------------
@@ -336,7 +308,7 @@ def editPuesto(request, id):
         puestoform = PuestoForm(instance=puesto)
         context = {'form': puestoform,
                    'edit': edit}
-    return render(request, 'puesto/addpuesto.html', context)
+    return render(request, 'employee/puesto/addpuesto.html', context)
 
 
 # --------Destroy------------------------------

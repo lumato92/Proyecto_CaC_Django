@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="content-wrapper">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="text-dark">{{ message }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <h1 class="h1 center">Todos los puestos</h1>
+
+        <div class="container">
+
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Posiciones</h3>
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="card-body table-responsive p-0" style="height: 300px;">
+                        <table class="table table-head-fixed text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Titulo</th>
+                                    <th>Descripcion</th>
+                                    <th>Salario</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for puesto in puestos %}
+
+                                <tr>
+                                    <th scope="row">{{puesto.id}}</th>
+                                    <td>{{puesto.name}}</td>
+                                    <td>{{puesto.description}}</td>
+                                    <td>{{puesto.department}}</td>
+                                    <td>{{puesto.base_salary}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" onclick="location.href='{% url 'infoPuesto' id=puesto.id %}'"><i class="far fa-eye"></i></button>
+                                        <button type="button" class="btn btn-success" onclick="location.href='{% url 'editPuesto' id=puesto.id %}'"><i class="fas fa-edit"></i></button>
+                                        <button type="button" class="btn btn-danger" onclick="location.href='{% url 'deletePuesto' id=puesto.id %}'"><i class="far fa-trash-alt"></i></button>
+                                    </td>
+                                </tr>
+                                
+                                {% endfor %}
+
+                            </tbody>
+                    </table>
+                    </div>
+                
+                </div>
+                
+            </div>
+        
+        </div>
+
+    </div>
+
+{% endblock content %}
