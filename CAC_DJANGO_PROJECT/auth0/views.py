@@ -40,9 +40,12 @@ def userProfile(request, username):
     user = User.objects.get(username=username)
     employee = Employee.objects.get(pk =request.user.id)
     overtime = OverTime.objects.filter(employee_id_id = employee)
-    print(employee)
+    print(employee.id)
+    wage = Wage.objects.filter(employee_id = employee)
+    # print(wage)
     context = {'user' : user,
                 'employee' :employee,
-                'overtimeList':overtime
+                'overtimeList':overtime,
+                'data' : wage 
             }
     return render(request, 'users/account_profile.html', context)
