@@ -50,7 +50,7 @@ class Employee(models.Model):
     manager = models.ForeignKey('self', on_delete=models.DO_NOTHING, blank=True, null=True)
     salary = models.FloatField(null=True)
     is_active = models.BooleanField(default=True)
-    username = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True, related_name = 'empleado')
+    username = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True, related_name='empleado')
     avatar = models.ImageField(default='img/no-image.png', upload_to='profile_images')
 
     class Meta:
@@ -69,7 +69,6 @@ class Employee(models.Model):
             new_img = (200, 200)
             img.thumbnail(new_img)
             img.save(self.avatar.path)
-            
 
 
 class Message(models.Model):
@@ -82,22 +81,21 @@ class Message(models.Model):
     def __str__(self) -> str:
         return f'{self.sender} - {self.receiver} - {self.msg_content[:10]}...'
 
+
 class Wage(models.Model):
-    
-    employee = models.ForeignKey(Employee, on_delete = models.CASCADE, related_name='employee_sal')
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='employee_sal')
     salary = models.FloatField()
     date = models.DateField()
-    revision_date = models.DateField(blank = True, null = True)
-    
+    revision_date = models.DateField(blank=True, null=True)
+
     class Meta:
-        verbose_name:'Salario'
-    
-    
+        verbose_name = 'Salario'
+
+
 class OverTime(models.Model):
-    
-    employee_id = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name = 'employee_ot')
+    employee_id = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='employee_ot')
     date = models.DateField()
     amount = models.FloatField()
-    
+
     class Meta:
         verbose_name = 'Horas Extras'
