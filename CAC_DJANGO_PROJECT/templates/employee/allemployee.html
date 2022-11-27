@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <div class="content-wrapper">
+    <div class="content-wrapper my-3">
         {% if messages %}
         {% for message in messages %}
         <div class="alert alert-dismissible alert-success">
@@ -12,7 +12,7 @@
         {% endfor %}
         {% endif %}
 
-        <h1 class="h1 center">Todos los Empleados</h1>
+        <h1 class="h1 text-center">Todos los Empleados</h1>
 
         <div class="container">
             <div class="row">
@@ -67,12 +67,14 @@
                             </tbody>
                        </table>
                     </div>
-                
+                    
                 </div>
+                <button type="button" class="btn btn-primary" onclick="location.href='{% url 'addEmployee' %}'">Crear empleado</button>
                 
             </div>
 
-        </div>
+        
+        
         
     </div>
 

@@ -3,50 +3,89 @@
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 <link rel="stylesheet" href={% static 'css/dashboard/dashboard.css' %}>
 
-<div class="container bootstrap snippets bootdey mx-3">
-  <div class="row justify-content-md-center">
-    <div class="col-lg-2 col-sm-6">
-      <div class="circle-tile ">
-        <a href="{% url 'allEmployee' %}"><div class="circle-tile-heading dark-blue"><i class="fa fa-users fa-fw fa-3x"></i></div></a>
-        <div class="circle-tile-content dark-blue">
-          <div class="circle-tile-description text-faded"> Empleados </div>
-          <div class="circle-tile-number text-faded ">{{ employees }} </div>
-          <a class="circle-tile-footer" href="{% url 'allEmployee' %}">Ingresar<i class="fa fa-chevron-circle-right"></i></a>
+<div class="container bootstrap snippets bootdey mx-3" style="margin-top: 40px;">
+  <div class="row justify-content-md-center mr-4">
+    <div class="col-lg-3 col-sm-6 ">
+        <div class="small-box bg-primary ">
+          <a href="{% url 'addEmployee' %}">
+          <div class="inner ">
+            <h3 style="margin-left: 20px;">{{ employees }}</h3> 
+          </div>
+          <div class="icon">
+            <i class="fas fa-user-plus"></i>
+          </div>
+          <br><br><br>
+          <div>
+            <p class="row justify-content-md-center">Empleados</p>
+          </div>
+          <a href="{% url 'allEmployee' %}" class="small-box-footer">
+            More info <i class="fas fa-arrow-circle-right"></i>
+          </a>
         </div>
+    </div>
+
+    <div class="col-lg-3 col-sm-6">
+      <div class="small-box bg-olive">
+        <a href="{% url 'addVendor' %}">
+        <div class="inner">
+          <h3 style="margin-left: 20px;">{{ suppliers }}</h3> 
+        </div>
+        <div class="icon">
+          <i class="fa-solid fa-cart-shopping"></i>
+        </div>
+        <br><br><br>
+        <div>
+          <p class="row justify-content-md-center">Proveedores</p>
+        </div>
+        <a href="{% url 'allVendor' %}" class="small-box-footer">
+          More info <i class="fas fa-arrow-circle-right"></i>
+        </a>
       </div>
     </div>
-     
-    <div class="col-lg-2 col-sm-6">
-      <div class="circle-tile ">
-        <a href="{% url 'addVendor' %}"><div class="circle-tile-heading red"><i class="fa fa-users fa-fw fa-3x"></i></div></a>
-        <div class="circle-tile-content red">
-          <div class="circle-tile-description text-faded"> Proveedores </div>
-          <div class="circle-tile-number text-faded ">{{ suppliers }}</div>
-          <a class="circle-tile-footer" href="{% url 'addVendor' %}">Ingresar<i class="fa fa-chevron-circle-right"></i></a>
+    
+
+    <div class="col-lg-3 col-sm-6">
+      <div class="small-box bg-warning">
+        <a href="{% url 'addEmployee' %}">
+        <div class="inner">
+          <h3 style="margin-left: 20px; color:white;">{{ departments }}</h3> 
         </div>
-      </div>
-    </div> 
-     
-    <div class="col-lg-2 col-sm-6">
-      <div class="circle-tile ">
-        <a href="{% url 'showDepartments' %}"><div class="circle-tile-heading yellow "><i class="fa fa-envelope fa-fw fa-3x"></i></div></a>
-        <div class="circle-tile-content yellow">
-          <div class="circle-tile-description text-faded"> Gerencias </div>
-          <div class="circle-tile-number text-faded ">{{ departments }}</div>
-          <a class="circle-tile-footer" href="{% url 'showDepartments' %}">Ingresar<i class="fa fa-chevron-circle-right"></i></a>
+        <div class="icon">
+          <i class="fa-solid fa-house"></i>
         </div>
-      </div>
-    </div> 
-     
-    <div class="col-lg-2 col-sm-6">
-      <div class="circle-tile ">
-        <a href="{% url 'inbox' %}"><div class="circle-tile-heading orange"><i class="fa fa-comments fa-fw fa-3x"></i></div></a>
-        <div class="circle-tile-content orange">
-          <div class="circle-tile-description text-faded"> Mensajes</div>
-          <div class="circle-tile-number text-faded ">{{ all_messages }}</div>
-          <a class="circle-tile-footer" href="{% url 'inbox' %}">Ingresar<i class="fa fa-chevron-circle-right"></i></a>
+        <br><br><br>
+        <div>
+          <p class="row justify-content-md-center" style="color:white;">Gerencias</p>
         </div>
+        <a href="{% url 'showDepartments' %}" class="small-box-footer" >
+          <span style="color:white;">More info</span> <i class="fas fa-arrow-circle-right" style="color:white;"></i>
+        </a>
       </div>
-    </div> 
+    </div>
+
+    <div class="col-lg-3 col-sm-6">
+      <div class="small-box bg-lime">
+        <a href="{% url 'messages' %}">
+        <div class="inner">
+          <h3 style="margin-left: 20px;color:white;">{{ all_messages }}</h3> 
+        </div>
+        <div class="icon">
+          <i class="fa-solid fa-envelope"></i>
+        </div>
+        <br><br><br>
+        <div>
+          <p class="row justify-content-md-center" style="color:white;">Mensajes</p>
+        </div>
+        <a href="{% url 'messages' %}" class="small-box-footer">
+          <span style="color:white;">More info</span> <i class="fas fa-arrow-circle-right" style="color:white;"></i>
+        </a>
+      </div>
+    </div>
+
+        
+    
+     
+    
   </div> 
 </div>  
+

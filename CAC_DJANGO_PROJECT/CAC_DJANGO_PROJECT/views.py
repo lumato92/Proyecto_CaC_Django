@@ -2,8 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
 from employee.models import Department, Employee, Message
-from vendor.models import Supplier
-# Create your views here.
+from vendor.models import Category, Supplier
 
 
 @login_required
@@ -14,6 +13,11 @@ def index(request):
 
 @login_required
 def home(request):
+    # Agregar Categorías de Proveedores si no existen
+    if Category.objects.count() == 0:
+        Category.objects.create(name="Comercial", description='')
+        Category.objects.create(name="Producción", description='')
+        Category.objects.create(name="Financiero", description='')
 
     if request.user.is_authenticated:
         first_name = request.user.first_name
@@ -29,7 +33,7 @@ def home(request):
 
         all_messages = Message.objects.filter(receiver=request.user)
         unread_messages = all_messages.filter(read=False)
-        print(unread_messages)
+
         context = {
             'first_name': first_name,
             'last_name': last_name,

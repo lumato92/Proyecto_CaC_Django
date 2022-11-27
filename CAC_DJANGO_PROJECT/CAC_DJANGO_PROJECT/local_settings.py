@@ -1,5 +1,5 @@
 
-DATABASES = {
+MY_DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'nombre_db',

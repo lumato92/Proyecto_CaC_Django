@@ -1,0 +1,71 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+<div class="row justify-content-md-center">
+    <!-- Inbox -->
+    <div class="col-6">
+        <div class="card top-selling overflow-auto my-3">
+            <div class="card-body pb-0 mb-3">
+                <h4 class="font-weight-bold text-primary text-center">
+                    Bandeja de Entrada
+                </h4>
+
+                <table class="table table-borderless">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="text-center" style="width: 15%">Fecha</th>
+                        <th scope="col" class="text-center" style="width: 15%" >Remitente</th>
+                        <th scope="col" class="text-center">Mensaje</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for message in inbox_messages %}
+                    <tr>
+                        <td class="text-center">{{ message.created_at|date:"d/m/Y" }}</td>
+                        <td class="text-center">{{ message.sender.username }}</td>
+                        <td class="text-end">{{ message.msg_content }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Inbox -->
+    <!-- Enviados -->
+    <div class="col-6">
+        <div class="card top-selling overflow-auto my-3">
+            <div class="card-body pb-0 mb-3">
+                <h4 class="font-weight-bold text-primary text-center">
+                    Mensajes enviados
+                </h4>
+
+                <table class="table table-borderless">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="text-center" style="width: 15%">Fecha</th>
+                        <th scope="col" class="text-center" style="width: 15%" >Destinatario</th>
+                        <th scope="col" class="text-center">Mensaje</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for message in sent_messages %}
+                    <tr>
+                        <td class="text-center">{{ message.created_at|date:"d/m/Y" }}</td>
+                        <td class="text-center">{{ message.receiver.username }}</td>
+                        <td class="text-end">{{ message.msg_content }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Enviados -->
+    <div class="text-center">
+        <a class="btn btn-primary btn-flat mb-3" href="{% url 'send_message' %}">
+            <i class="fas fa-envelope"></i> Redactar
+        </a>
+    </div>
+</div>
+{% endblock content %}

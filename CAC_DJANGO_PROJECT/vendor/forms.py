@@ -14,8 +14,8 @@ class SupplierForm(forms.ModelForm):
         self.fields['email'].widget = forms.TextInput(attrs={'class': 'form-control'})
         self.fields['contact_name'].widget = forms.TextInput(attrs={'class': 'form-control'})
         self.fields['vat_condition'].widget = forms.Select(attrs={'class': 'form-control'}, choices=VAT_CONDITION)
-        self.fields['category'] = forms.ModelMultipleChoiceField(queryset=Category.objects.all(),
-                                                                 widget=forms.Select(attrs={'class': 'form-control'}))
+        self.fields['category'] = forms.ModelChoiceField(queryset=Category.objects.all(),
+                                                         widget=forms.Select(attrs={'class': 'form-control'}))
 
     class Meta:
         model = Supplier

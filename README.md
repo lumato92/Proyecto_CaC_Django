@@ -39,7 +39,7 @@ sudo -u postgres psql\
 **postgres=#** CREATE USER my_user WITH PASSWORD 'my_password';\
 **postgres=#** ALTER ROLE my_user SET client_encoding TO 'utf8';\
 **postgres=#** ALTER ROLE my_user SET default_transaction_isolation TO 'read committed';\
-**postgres=#** ALTER ROLE my_user SET timezone TO 'UTC';\
+**postgres=#** ALTER ROLE my_user SET timezone TO 'America/Argentina/Cordoba';\
 **postgres=#** GRANT ALL PRIVILEGES ON DATABASE nombre_bd TO my_user;\
 **postgres=#** ```\q```
 
