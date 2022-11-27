@@ -15,8 +15,8 @@
         <div class="image">
           <a href="{% url 'allEmployee' %}">
             <img 
-              {% if user.employee.avatar.url %}
-                src="{{ user.employee.avatar.url }}"
+              {% if user.empleado.avatar.url %}
+                src="{{ user.empleado.avatar.url }}"
               {% else %}
                 src="{% static 'img/admin.png' %}"
               {% endif %}

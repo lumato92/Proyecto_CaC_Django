@@ -7,7 +7,7 @@ from PIL import Image
 # Gerencias
 class Department(models.Model):
     name = models.CharField(max_length=30)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -20,7 +20,7 @@ class Department(models.Model):
 class Puesto(models.Model):
     name = models.CharField(max_length=30)
     department = models.ForeignKey(Department, on_delete=models.CASCADE, blank=True, null=True)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     base_salary = models.FloatField()
 
     def __str__(self):
