@@ -13,9 +13,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 
 try:
-    from CAC_DJANGO_PROJECT.local_settings import DATABASES1
+    from CAC_DJANGO_PROJECT.local_settings import MY_DATABASES
 except ImportError:
-    DATABASES = {}
+    MY_DATABASES = {}
     print('local_settings no encontrado')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -85,14 +85,15 @@ WSGI_APPLICATION = 'CAC_DJANGO_PROJECT.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-if not DATABASES:
+if not MY_DATABASES:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-
+else:
+    DATABASES = MY_DATABASES
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -116,13 +117,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
+LANGUAGE_CODE = 'es-ar'
+TIME_ZONE = 'America/Argentina/Buenos_Aires'
 USE_I18N = True
-
-USE_TZ = True
+USE_L10N = True
+pioUSE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
