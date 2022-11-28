@@ -93,7 +93,7 @@
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           {% if unread_messages %}
             <div class="dropdown-divider"></div>
-            <a href="{% url 'nessages' %}" class="dropdown-item">
+            <a href="{% url 'messages' %}" class="dropdown-item">
               <i class="fas fa-envelope mr-2"></i> {{ unread_messages.count }} nuevos mensajes
             </a>
             <a href="{% url 'messages' %}" class="dropdown-item dropdown-footer">Ver todos los mensajes</a>
